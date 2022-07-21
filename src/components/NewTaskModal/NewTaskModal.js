@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
 import { ModeContext } from "../../contexts/ModeContext";
+
 import Button from "../Button/Button";
 import Dropdown from "../Dropdown/Dropdown";
 

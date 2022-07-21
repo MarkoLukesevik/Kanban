@@ -32,6 +32,14 @@ function SmallBar({ board, findBoard, isArrowClicked }) {
           />
         );
       })}
+      <div
+        className={
+          isDark ? "new-board bar-board bar-board-dark" : "new-board bar-board"
+        }
+      >
+        <img className="new-board__img" src="/assets/icon-board.svg" alt="" />
+        <p>+ Create New Board</p>
+      </div>
       <ToggleMode handleModeChange={handleModeChange} isDark={isDark} />
     </div>
   );

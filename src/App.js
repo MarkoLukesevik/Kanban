@@ -3,17 +3,17 @@ import UseAxios from "./hooks/useAxios";
 
 import { BoardContext } from "./contexts/BoardContext";
 import { ModeContext } from "./contexts/ModeContext";
+import { ModalContext } from "./contexts/ModalContext";
 
 import Sidebar from "./components/Sidebar/Sidebar";
 import SidebarToggle from "./components/SidebarToggle/SidebarToggle";
 import Header from "./components/Header/Header";
-
-import "./App.scss";
 import Column from "./components/Column/Column";
 import DeleteModal from "./components/DeleteModal/DeleteModal";
 import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
 import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
-import { ModalContext } from "./contexts/ModalContext";
+
+import "./App.scss";
 
 function App() {
   const { boards } = useContext(BoardContext);

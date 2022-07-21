@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { ModeContext } from "../../contexts/ModeContext";
 
 import "./BarContent.scss";

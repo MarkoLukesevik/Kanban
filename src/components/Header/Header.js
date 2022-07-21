@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
-import { ModalContext } from "../../contexts/ModalContext";
-
 import { ModeContext } from "../../contexts/ModeContext";
+import { ModalContext } from "../../contexts/ModalContext";
 
 import Button from "../Button/Button";
 import Edit from "../Edit/Edit";
