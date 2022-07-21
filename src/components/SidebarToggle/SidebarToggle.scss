@@ -1,0 +1,20 @@
+@import "../../styles/colors.scss";
+
+.sidebar__activator {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 48px;
+  background-color: $primary;
+  border-radius: 0px 100px 100px 0px;
+  cursor: pointer;
+  z-index: 10;
+
+  &-visible {
+    display: flex;
+  }
+}

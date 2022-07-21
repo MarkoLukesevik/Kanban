@@ -1,0 +1,47 @@
+@import "../../styles/colors.scss";
+
+.bar-board {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 276px;
+  height: 48px;
+  padding: 10px 10%;
+  font-family: Plus Jakarta Sans;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 19px;
+  color: $medium-gray;
+  cursor: pointer;
+  border-radius: 0px 100px 100px 0px;
+
+  &:hover {
+    color: $primary;
+    background-color: #625fc73c;
+  }
+  &-dark {
+    &-active {
+      background-color: $primary;
+      color: white;
+      &:hover {
+        background-color: white;
+      }
+    }
+
+    &:hover {
+      background-color: white;
+    }
+  }
+
+  &-active {
+    background-color: $primary;
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .bar-board {
+    width: 240px;
+  }
+}

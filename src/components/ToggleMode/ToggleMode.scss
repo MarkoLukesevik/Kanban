@@ -1,0 +1,25 @@
+@import "../../styles/colors.scss";
+
+.toggle__mode {
+  position: absolute;
+  left: 10%;
+  bottom: 80px;
+  width: 240px;
+  height: 48px;
+  background-color: #f4f7fd;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  &-dark {
+    background-color: $very-dark-gray;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .toggle__mode {
+    width: calc(240px - 10%);
+  }
+}

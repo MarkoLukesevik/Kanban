@@ -1,0 +1,48 @@
+@import "../../styles/colors.scss";
+
+.edit {
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+
+  &__modal {
+    width: 192px;
+    height: 94px;
+    background-color: white;
+    border-radius: 8px;
+    position: absolute;
+    right: 30px;
+    top: 75px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+
+    &-dark {
+      background-color: $very-dark-gray;
+    }
+    &-active {
+      display: flex;
+    }
+
+    &-edit {
+      color: $medium-gray;
+      cursor: pointer;
+    }
+
+    &-delete {
+      color: $destructive;
+      cursor: pointer;
+      &:hover {
+        color: $destructive-hover;
+      }
+    }
+  }
+}
+
+// @media only screen and (max-width: 768px) {
+//   .edit {
+//     right: 10px;
+//   }
+// }

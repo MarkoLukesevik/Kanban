@@ -1,0 +1,25 @@
+@import "../../styles/colors.scss";
+
+.column {
+  width: 280px;
+  min-width: 280px;
+  padding: 30px 20px;
+
+  & h3 {
+    font-family: Plus Jakarta Sans;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 2.4000000953674316px;
+    color: $medium-gray;
+  }
+
+  .column__tasks {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+}
