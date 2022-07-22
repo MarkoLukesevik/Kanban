@@ -3,7 +3,7 @@ import { ModeContext } from "../../contexts/ModeContext";
 
 import "./Dropdown.scss";
 
-function Dropdown({ columns, status }) {
+function Dropdown({ columns, status, handleStatusChange }) {
   const { isDark } = useContext(ModeContext);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   return (
@@ -33,7 +33,9 @@ function Dropdown({ columns, status }) {
         }
       >
         {columns?.map((item) => (
-          <p key={item}>{item}</p>
+          <p onClick={() => handleStatusChange(item)} key={item}>
+            {item}
+          </p>
         ))}
       </div>
     </div>

@@ -24,15 +24,15 @@ function EditTaskModal({ columns, getUpdatedTasks }) {
 
   const toggleSubtask = (e) => {
     const { name } = e.target;
-    let foundTask = currentTask.subtasks.find((subtask) => {
+    let foundSubtask = currentTask.subtasks.find((subtask) => {
       return subtask.title === name;
     });
-    let foundTaskIndex = currentTask.subtasks.indexOf(foundTask);
+    let foundSubtaskIndex = currentTask.subtasks.indexOf(foundSubtask);
 
-    foundTask.isCompleted = !foundTask.isCompleted;
+    foundSubtask.isCompleted = !foundSubtask.isCompleted;
 
     let copy = [...currentTask.subtasks];
-    copy[foundTaskIndex] = foundTask;
+    copy[foundSubtaskIndex] = foundSubtask;
 
     editTask({ ...currentTask, subtasks: copy });
   };
@@ -40,6 +40,10 @@ function EditTaskModal({ columns, getUpdatedTasks }) {
   const handleTaskDelete = () => {
     deleteTask(currentTask);
     getUpdatedTasks();
+  };
+
+  const handleStatusChange = (status) => {
+    editTask({ ...currentTask, status: status });
   };
 
   return (
@@ -85,7 +89,11 @@ function EditTaskModal({ columns, getUpdatedTasks }) {
         );
       })}
 
-      <Dropdown columns={columns} status={currentTask.status} />
+      <Dropdown
+        columns={columns}
+        status={currentTask.status}
+        handleStatusChange={handleStatusChange}
+      />
     </div>
   );
 }

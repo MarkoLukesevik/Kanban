@@ -29,6 +29,8 @@
   }
 
   &__content {
+    height: 400px;
+    overflow-y: auto;
     &-title {
       padding: 20px 10% 10px;
       font-family: Plus Jakarta Sans;

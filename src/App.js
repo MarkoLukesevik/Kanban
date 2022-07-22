@@ -14,6 +14,7 @@ import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
 import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
 
 import "./App.scss";
+import BoardModal from "./components/BoardModal/BoardModal";
 
 function App() {
   const { boards } = useContext(BoardContext);
@@ -85,6 +86,7 @@ function App() {
       <DeleteModal {...board} />
       {/* <NewTaskModal columns={columns} /> */}
       <EditTaskModal columns={columns} getUpdatedTasks={getUpdatedTasks} />
+      <BoardModal />
     </div>
   );
 }

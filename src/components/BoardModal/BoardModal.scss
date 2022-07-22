@@ -1,0 +1,33 @@
+@import "../../styles/colors.scss";
+
+.board-modal {
+  background-color: white;
+  display: none;
+  width: 400px;
+  height: auto;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &-dark {
+    background-color: $dark-gray;
+    color: white;
+
+    & input {
+      color: white;
+    }
+  }
+  &-active {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .board-modal {
+    width: 342px;
+  }
+}

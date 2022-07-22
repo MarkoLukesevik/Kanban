@@ -9,7 +9,7 @@ import ToggleMode from "../ToggleMode/ToggleMode";
 import "./Sidebar.scss";
 
 function Sidebar({ board, findBoard, isSideBarActive, toggle }) {
-  const { boards } = useContext(BoardContext);
+  const { boards, handleBoardModalActivation } = useContext(BoardContext);
   const { isDark, handleModeChange } = useContext(ModeContext);
 
   let sidebarClass =
@@ -43,6 +43,7 @@ function Sidebar({ board, findBoard, isSideBarActive, toggle }) {
           );
         })}
         <div
+          onClick={() => handleBoardModalActivation()}
           className={
             isDark
               ? "new-board bar-board bar-board-dark"

@@ -53,7 +53,7 @@
     letter-spacing: 0px;
   }
   &__subtask-input-div {
-    width: 416px;
+    width: 100%;
     height: 40px;
     background-color: $light-gray;
     display: flex;
@@ -82,51 +82,10 @@
     line-height: 15px;
     letter-spacing: 0px;
   }
+}
 
-  //   &__dropdown {
-  //     width: 416px;
-  //     height: 40px;
-  //     background-color: transparent;
-  //     border: 1px solid $primary;
-  //     display: flex;
-  //     align-items: center;
-  //     justify-content: space-between;
-  //     padding: 0px 20px;
-  //     cursor: pointer;
-  //     font-family: Plus Jakarta Sans;
-  //     font-size: 13px;
-  //     font-weight: 500;
-  //     line-height: 23px;
-  //     letter-spacing: 0px;
-
-  //     &-content {
-  //       position: absolute;
-  //       bottom: -90px;
-  //       width: 416px;
-  //       height: 120px;
-  //       display: none;
-  //       flex-direction: column;
-  //       justify-content: center;
-  //       gap: 5px;
-  //       padding: 0px 20px;
-  //       border-radius: 8px;
-  //       background-color: white;
-
-  //       &-active {
-  //         display: flex;
-  //       }
-  //       &-dark {
-  //         background-color: $very-dark-gray;
-  //       }
-  //       & p {
-  //         font-family: Plus Jakarta Sans;
-  //         font-size: 13px;
-  //         font-weight: 500;
-  //         line-height: 23px;
-  //         letter-spacing: 0px;
-  //         color: $medium-gray;
-  //         cursor: pointer;
-  //       }
-  //     }
-  //   }
+@media only screen and (max-width: 768px) {
+  .modal {
+    width: 342px;
+  }
 }
