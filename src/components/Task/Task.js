@@ -6,7 +6,7 @@ import "./Task.scss";
 
 function Task(props) {
   const { isDark } = useContext(ModeContext);
-  const { handleEditModalActivation, changeCurrentTask } =
+  const { handleViewTaskActivation, changeCurrentTask } =
     useContext(ModalContext);
   let completedSubtasks = 0;
   props.subtasks.forEach((subtask) => {
@@ -17,7 +17,7 @@ function Task(props) {
   });
 
   const handleTaskClick = () => {
-    handleEditModalActivation();
+    handleViewTaskActivation();
     changeCurrentTask(props.id);
   };
 

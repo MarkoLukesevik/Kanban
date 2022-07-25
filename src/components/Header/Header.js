@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ModeContext } from "../../contexts/ModeContext";
+import { BoardContext } from "../../contexts/BoardContext";
 import { ModalContext } from "../../contexts/ModalContext";
 
 import Button from "../Button/Button";
@@ -8,8 +9,10 @@ import SmallBar from "../SmallBar/SmallBar";
 
 import "./Header.scss";
 
-function Header({ board, findBoard, firstBoard }) {
+function Header() {
   const { isDark } = useContext(ModeContext);
+  const { board, findBoard, handleEditBoardModalActivation } =
+    useContext(BoardContext);
   const { handleDeleteModalActivating, handleNewTaskModalActivating } =
     useContext(ModalContext);
   const [isArrowClicked, setIsArrowClicked] = useState(false);
@@ -17,7 +20,7 @@ function Header({ board, findBoard, firstBoard }) {
     <header className={isDark ? "header header-dark" : "header"}>
       <img className="header__logo" src="/assets/light-logo.svg" alt="" />
       <div className="header__title">
-        <h2>{board ? board?.name : firstBoard?.name}</h2>
+        <h2>{board?.name}</h2>
         <img
           className="header__title-arrow"
           onClick={() => setIsArrowClicked(!isArrowClicked)}
@@ -36,6 +39,7 @@ function Header({ board, findBoard, firstBoard }) {
       <Button btnText="+" onBtnClick={handleNewTaskModalActivating} />
       <Edit
         edit="Edit Board"
+        onEditClick={handleEditBoardModalActivation}
         remove="Delete Board"
         onRemoveClick={handleDeleteModalActivating}
       />

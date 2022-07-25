@@ -1,58 +1,45 @@
-import { useContext, useEffect, useState } from "react";
-import UseAxios from "./hooks/useAxios";
+import { useContext, useState } from "react";
 
 import { BoardContext } from "./contexts/BoardContext";
 import { ModeContext } from "./contexts/ModeContext";
-import { ModalContext } from "./contexts/ModalContext";
 
 import Sidebar from "./components/Sidebar/Sidebar";
 import SidebarToggle from "./components/SidebarToggle/SidebarToggle";
 import Header from "./components/Header/Header";
 import Column from "./components/Column/Column";
+import NewColumn from "./components/NewColumn/NewColumn";
+
 import DeleteModal from "./components/DeleteModal/DeleteModal";
 import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
+import ViewTaskModal from "./components/ViewTaskModal/ViewTaskModal";
+import BoardModal from "./components/BoardModal/BoardModal";
 import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
+import EditBoardModal from "./components/EditBoardModal/EditBoardModal";
 
 import "./App.scss";
-import BoardModal from "./components/BoardModal/BoardModal";
 
 function App() {
-  const { boards } = useContext(BoardContext);
+  const {
+    board,
+    findBoard,
+    columns,
+    tasks,
+    getUpdatedTasks,
+    addNewTask,
+    addNewColumn,
+  } = useContext(BoardContext);
   const { isDark } = useContext(ModeContext);
-  const { handleEditModalActivation } = useContext(ModalContext);
 
-  const [board, setBoard] = useState([]);
   const [isSidebarActive, setIsSideBarActive] = useState(true);
-  const [columns, setColumns] = useState([]);
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    setBoard(boards[0]);
-  }, [boards]);
-
-  useEffect(() => {
-    UseAxios(`/api/boards/${board?.id}/columns`, "names", setColumns);
-    UseAxios(`api/boards/${board?.id}/tasks`, "", setTasks);
-  }, [board]);
 
   const toggleSidebarVisibility = () => {
     setIsSideBarActive(!isSidebarActive);
-  };
-
-  const findBoard = (name) => {
-    let currentBoard = boards.find((item) => item.name === name);
-    setBoard(currentBoard);
   };
 
   const renderAllColumns = () => {
     return columns?.map((column) => {
       return <Column key={column} name={column} tasks={tasks} />;
     });
-  };
-
-  const getUpdatedTasks = () => {
-    UseAxios(`api/boards/${board?.id}/tasks`, "", setTasks);
-    handleEditModalActivation();
   };
 
   return (
@@ -69,7 +56,7 @@ function App() {
         toggle={toggleSidebarVisibility}
       />
       <div className={!isSidebarActive ? "wrapper wrapper-wider" : "wrapper"}>
-        <Header boards={boards} board={board} findBoard={findBoard} />
+        <Header />
 
         <div
           className={
@@ -81,12 +68,15 @@ function App() {
           }
         >
           {renderAllColumns()}
+          <NewColumn addNewColumn={addNewColumn} />
         </div>
       </div>
       <DeleteModal {...board} />
-      {/* <NewTaskModal columns={columns} /> */}
+      <NewTaskModal columns={columns} addNewTask={addNewTask} />
+      <ViewTaskModal columns={columns} getUpdatedTasks={getUpdatedTasks} />
       <EditTaskModal columns={columns} getUpdatedTasks={getUpdatedTasks} />
       <BoardModal />
+      <EditBoardModal />
     </div>
   );
 }

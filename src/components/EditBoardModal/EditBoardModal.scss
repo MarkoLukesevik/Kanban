@@ -1,15 +1,17 @@
 @import "../../styles/colors.scss";
 
-.board-modal {
-  background-color: white;
-  display: none;
-  width: 400px;
+.edit-board-modal {
+  width: 480px;
   height: auto;
   padding: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
 
   &-dark {
     background-color: $dark-gray;
@@ -21,8 +23,6 @@
   }
   &-active {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
   }
 
   & input {
@@ -34,7 +34,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .board-modal {
-    width: 342px;
+  .edit-board-modal {
+    width: 343px;
   }
 }

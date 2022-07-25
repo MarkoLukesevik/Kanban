@@ -1,35 +1,37 @@
 @import "../../styles/colors.scss";
 
-.modal {
+.edit-modal {
   width: 480px;
   height: auto;
-  background-color: white;
+  padding: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 30px 20px;
   display: none;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  background-color: white;
+
+  &-dark {
+    background-color: $dark-gray;
+    color: white;
+
+    & input {
+      color: white;
+    }
+
+    & .btn:first-of-type {
+      background-color: white;
+      color: $primary;
+    }
+  }
 
   &-active {
     display: flex;
   }
 
-  &-dark {
-    background-color: $dark-gray;
-    color: white;
-  }
-
-  & .edit {
-    top: 38px;
-    &__modal {
-      right: -80px;
-    }
-  }
-
-  &-title {
+  & h3 {
     font-family: Plus Jakarta Sans;
     font-size: 18px;
     font-weight: 700;
@@ -37,55 +39,31 @@
     letter-spacing: 0px;
   }
 
-  &-description {
-    font-family: Plus Jakarta Sans;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 23px;
-    letter-spacing: 0px;
+  &__delete-btn {
+    background-color: transparent;
+    border: none;
     color: $medium-gray;
+    cursor: pointer;
+    margin-left: 5%;
+    height: 14.849242210388184px;
+    width: 14.849242210388184px;
+
+    &:hover {
+      color: $destructive-hover;
+    }
   }
-  & span {
-    font-family: Plus Jakarta Sans;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: 0px;
-  }
-  &__subtask-input-div {
-    width: 100%;
+
+  & .btn {
+    width: 90%;
     height: 40px;
-    background-color: $light-gray;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 30px;
-    padding: 5px 20px;
-
-    &-title {
-      opacity: 0.5;
-    }
-
-    &-dark {
-      background-color: $very-dark-gray;
-    }
-
-    & input[type="checkbox"]:checked {
-      filter: brightness(0) saturate(100%) invert(39%) sepia(50%) saturate(620%)
-        hue-rotate(203deg) brightness(95%) contrast(101%);
-    }
   }
-  &-status {
-    font-family: Plus Jakarta Sans;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: 0px;
+  & .subtasks {
+    width: 90%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .modal {
-    width: 342px;
+  .edit-task-modal {
+    width: 343px;
   }
 }

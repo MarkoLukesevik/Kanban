@@ -3,7 +3,7 @@ import { ModeContext } from "../../contexts/ModeContext";
 
 import Task from "../Task/Task";
 
-import "./Columns.scss";
+import "./Column.scss";
 
 function Column({ name, tasks }) {
   const { isDark } = useContext(ModeContext);

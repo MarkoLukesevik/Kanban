@@ -6,13 +6,13 @@
   position: relative;
   background-color: #ffffff;
   border-right: 1px solid #979797;
-  display: none;
   transform: translateX(-100%);
+  // display: none;
   transition: 0.8s ease;
 
   &__active {
-    display: inline-block;
     transform: translateX(0%);
+    // display: inline-block;
   }
   &-dark {
     background-color: $dark-gray;

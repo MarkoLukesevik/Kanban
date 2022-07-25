@@ -6,18 +6,21 @@ export function ModalProvider({ children }) {
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
   const [isNewTaskModalActive, setIsNewTaskModalActive] = useState(false);
   const [isEditModalActive, setIsEditModalActive] = useState(false);
+  const [isViewTaskModalActive, setIsViewTaskModalActive] = useState(false);
   const [currentTask, setCurrentTask] = useState({});
 
   const handleDeleteModalActivating = () => {
     setIsDeleteModalActive(!isDeleteModalActive);
   };
-
   const handleNewTaskModalActivating = () => {
     setIsNewTaskModalActive(!isNewTaskModalActive);
   };
-
-  const handleEditModalActivation = () =>
+  const handleViewTaskActivation = () => {
+    setIsViewTaskModalActive(!isViewTaskModalActive);
+  };
+  const handleEditModalActivation = () => {
     setIsEditModalActive(!isEditModalActive);
+  };
 
   const changeCurrentTask = (id) => {
     UseAxios(`/api/tasks/${id}`, "", setCurrentTask);
@@ -31,6 +34,51 @@ export function ModalProvider({ children }) {
     UseAxios(`/api/tasks/${task.id}`, "", setCurrentTask, "delete", task);
   };
 
+  const handleCurrentTaskChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentTask({ ...currentTask, [name]: value });
+  };
+
+  const handleStatusChange = (status) => {
+    editTask({ ...currentTask, status: status });
+  };
+
+  const handleSubtaskChange = (e, subtask) => {
+    const index = currentTask.subtasks.indexOf(subtask);
+    let changedSubtasks = currentTask.subtasks;
+    changedSubtasks[index] = { ...subtask, title: e.target.value };
+    editTask({ ...currentTask, subtasks: changedSubtasks });
+  };
+
+  const addNewSubtask = (newSubtask) => {
+    editTask({
+      ...currentTask,
+      subtasks: [...currentTask.subtasks, newSubtask],
+    });
+  };
+
+  const deleteSubtask = (index) => {
+    let subtasks = currentTask.subtasks.filter((_, i) => {
+      return i !== index;
+    });
+    editTask({ ...currentTask, subtasks });
+  };
+
+  const toggleSubtask = (e) => {
+    const { name } = e.target;
+    let foundSubtask = currentTask.subtasks.find((subtask) => {
+      return subtask.title === name;
+    });
+    let foundSubtaskIndex = currentTask.subtasks.indexOf(foundSubtask);
+
+    foundSubtask.isCompleted = !foundSubtask.isCompleted;
+
+    let copy = [...currentTask.subtasks];
+    copy[foundSubtaskIndex] = foundSubtask;
+
+    editTask({ ...currentTask, subtasks: copy });
+  };
+
   return (
     <ModalContext.Provider
       value={{
@@ -38,12 +86,20 @@ export function ModalProvider({ children }) {
         handleDeleteModalActivating,
         isNewTaskModalActive,
         handleNewTaskModalActivating,
+        isViewTaskModalActive,
+        handleViewTaskActivation,
         isEditModalActive,
         handleEditModalActivation,
         currentTask,
         changeCurrentTask,
         editTask,
         deleteTask,
+        handleStatusChange,
+        addNewSubtask,
+        deleteSubtask,
+        handleCurrentTaskChange,
+        handleSubtaskChange,
+        toggleSubtask,
       }}
     >
       {children}
