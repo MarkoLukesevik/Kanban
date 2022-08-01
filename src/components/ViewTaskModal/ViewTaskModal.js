@@ -30,6 +30,7 @@ function EditTaskModal({ columns, getUpdatedTasks }) {
   const handleTaskDelete = () => {
     deleteTask(currentTask);
     getUpdatedTasks();
+    handleViewTaskActivation();
   };
 
   const handleOnEditClick = () => {
