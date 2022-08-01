@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { BoardContext } from "../../contexts/BoardContext";
+import { ColumnsContext } from "../../contexts/ColumnContext";
 import { ModeContext } from "../../contexts/ModeContext";
 
 import Button from "../Button/Button";
@@ -11,14 +12,19 @@ function EditBoardModal() {
   const {
     isEditBoardModalActive,
     board,
-    columns,
     changeBoardName,
-    handleColumnChange,
-    addNewColumn,
+
     handleEditBoardModalActivation,
-    editColumn,
-    handleColumnDelete,
   } = useContext(BoardContext);
+
+  const {
+    columns,
+    handleAddingColumn,
+    editColumn,
+    handleColumnChange,
+    handleColumnDelete,
+    deleteColumn,
+  } = useContext(ColumnsContext);
 
   const editingBoard = () => {
     handleEditBoardModalActivation();
@@ -56,17 +62,14 @@ function EditBoardModal() {
             />
             <button
               className="edit-modal__delete-btn"
-              onClick={() => handleColumnDelete(index)}
+              onClick={() => handleColumnDelete(index, deleteColumn)}
             >
               X
             </button>
           </div>
         );
       })}
-      <Button
-        btnText="+ Add New Column"
-        onBtnClick={() => addNewColumn({ name: "" })}
-      />
+      <Button btnText="+ Add New Column" onBtnClick={handleAddingColumn} />
       <Button btnText="Save Changes" onBtnClick={editingBoard} />
     </div>
   );

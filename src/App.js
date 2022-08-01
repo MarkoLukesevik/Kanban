@@ -17,17 +17,13 @@ import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
 import EditBoardModal from "./components/EditBoardModal/EditBoardModal";
 
 import "./App.scss";
+import { ColumnsContext } from "./contexts/ColumnContext";
 
 function App() {
-  const {
-    board,
-    findBoard,
-    columns,
-    tasks,
-    getUpdatedTasks,
-    addNewTask,
-    addNewColumn,
-  } = useContext(BoardContext);
+  const { board, findBoard, tasks, getUpdatedTasks, addNewTask } =
+    useContext(BoardContext);
+
+  const { columns, addNewColumn } = useContext(ColumnsContext);
   const { isDark } = useContext(ModeContext);
 
   const [isSidebarActive, setIsSideBarActive] = useState(true);

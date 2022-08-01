@@ -7,6 +7,7 @@ export function ModalProvider({ children }) {
   const [isNewTaskModalActive, setIsNewTaskModalActive] = useState(false);
   const [isEditModalActive, setIsEditModalActive] = useState(false);
   const [isViewTaskModalActive, setIsViewTaskModalActive] = useState(false);
+
   const [currentTask, setCurrentTask] = useState({});
 
   const handleDeleteModalActivating = () => {

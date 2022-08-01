@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { BoardContext } from "../../contexts/BoardContext";
+import { ColumnsContext } from "../../contexts/ColumnContext";
 import { ModeContext } from "../../contexts/ModeContext";
 import Button from "../Button/Button";
 
@@ -9,6 +10,8 @@ function BoardModal() {
   const { isDark } = useContext(ModeContext);
   const { addNewBoard, isNewBoardModalActive, handleBoardModalActivation } =
     useContext(BoardContext);
+  const { handleColumnDelete } = useContext(ColumnsContext);
+
   const [newBoard, setNewBoard] = useState({
     name: "",
     columns: ["Todo", "Doing"],
@@ -33,17 +36,6 @@ function BoardModal() {
     let changedColumns = newBoard.columns;
     changedColumns[index] = e.target.value;
     setNewBoard({ ...addNewBoard, columns: changedColumns });
-  };
-
-  const addNewColumn = () => {
-    let newColumn = "";
-    setNewBoard({ ...newBoard, columns: [...newBoard.columns, newColumn] });
-  };
-
-  const deleteColumn = (index) => {
-    let filteredColumns = newBoard.columns.filter((_, i) => i !== index);
-
-    setNewBoard({ ...newBoard, columns: [filteredColumns] });
   };
 
   return (
@@ -76,7 +68,7 @@ function BoardModal() {
             />
             <button
               className="new-task-modal__delete-btn"
-              onClick={() => deleteColumn(index)}
+              onClick={() => handleColumnDelete(index, setNewBoard)}
             >
               X
             </button>
@@ -84,7 +76,15 @@ function BoardModal() {
         );
       })}
 
-      <Button btnText="+ Add New Column" onBtnClick={addNewColumn} />
+      <Button
+        btnText="+ Add New Column"
+        onBtnClick={() =>
+          setNewBoard({
+            ...newBoard,
+            columns: [...newBoard.columns, ""],
+          })
+        }
+      />
       <Button btnText="Add New Board" onBtnClick={addingNewBoard} />
     </div>
   );

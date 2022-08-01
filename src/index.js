@@ -6,16 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BoardProvider } from "./contexts/BoardContext";
 import { ModeProvider } from "./contexts/ModeContext";
 import { ModalProvider } from "./contexts/ModalContext";
+import { ColumnsProvider } from "./contexts/ColumnContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BoardProvider>
-      <ModeProvider>
-        <ModalProvider>
-          <App />
-        </ModalProvider>
-      </ModeProvider>
+      <ColumnsProvider>
+        <ModeProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </ModeProvider>
+      </ColumnsProvider>
     </BoardProvider>
   </React.StrictMode>
 );
