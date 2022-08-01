@@ -18,12 +18,12 @@ import EditBoardModal from "./components/EditBoardModal/EditBoardModal";
 
 import "./App.scss";
 import { ColumnsContext } from "./contexts/ColumnContext";
+import { TasksContext } from "./contexts/TaskContext";
 
 function App() {
-  const { board, findBoard, tasks, getUpdatedTasks, addNewTask } =
-    useContext(BoardContext);
-
+  const { board, findBoard } = useContext(BoardContext);
   const { columns, addNewColumn } = useContext(ColumnsContext);
+  const { tasks, getUpdatedTasks, addNewTask } = useContext(TasksContext);
   const { isDark } = useContext(ModeContext);
 
   const [isSidebarActive, setIsSideBarActive] = useState(true);

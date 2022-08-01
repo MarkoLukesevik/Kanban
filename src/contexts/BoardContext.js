@@ -8,7 +8,7 @@ export const BoardContext = createContext(INIT_DATA);
 export function BoardProvider({ children }) {
   const [boards, setBoards] = useState([]);
   const [board, setBoard] = useState(boards[0]);
-  const [tasks, setTasks] = useState([]);
+
   const [isNewBoardModalActive, setIsNewBoardModalActive] = useState(false);
   const [isEditBoardModalActive, setIsEditBoardModalActive] = useState(false);
 
@@ -19,10 +19,6 @@ export function BoardProvider({ children }) {
   useEffect(() => {
     setBoard(boards[0]);
   }, [boards]);
-
-  useEffect(() => {
-    UseAxios(`api/boards/${board?.id}/tasks`, "", setTasks);
-  }, [board]);
 
   const handleBoardModalActivation = () => {
     setIsNewBoardModalActive(!isNewBoardModalActive);
@@ -55,22 +51,11 @@ export function BoardProvider({ children }) {
     editBoard({ ...board, [name]: value });
   };
 
-  const getUpdatedTasks = () => {
-    UseAxios(`api/boards/${board?.id}/tasks`, "", setTasks);
-  };
-
-  const addNewTask = (task) => {
-    UseAxios(`api/boards/${board.id}/tasks`, "", setTasks, "post", task);
-  };
-
   return (
     <BoardContext.Provider
       value={{
         boards,
         board,
-        tasks,
-        getUpdatedTasks,
-        addNewTask,
         findBoard,
         deleteBoard,
         addNewBoard,

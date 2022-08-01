@@ -7,17 +7,20 @@ import { BoardProvider } from "./contexts/BoardContext";
 import { ModeProvider } from "./contexts/ModeContext";
 import { ModalProvider } from "./contexts/ModalContext";
 import { ColumnsProvider } from "./contexts/ColumnContext";
+import { TasksProvider } from "./contexts/TaskContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BoardProvider>
       <ColumnsProvider>
-        <ModeProvider>
-          <ModalProvider>
-            <App />
-          </ModalProvider>
-        </ModeProvider>
+        <TasksProvider>
+          <ModeProvider>
+            <ModalProvider>
+              <App />
+            </ModalProvider>
+          </ModeProvider>
+        </TasksProvider>
       </ColumnsProvider>
     </BoardProvider>
   </React.StrictMode>
