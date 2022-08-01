@@ -13,7 +13,7 @@ export function BoardProvider({ children }) {
   const [isEditBoardModalActive, setIsEditBoardModalActive] = useState(false);
 
   useEffect(() => {
-    UseAxios("/api/boards", "boards", setBoards);
+    UseAxios("/api/boards", setBoards);
   }, []);
 
   useEffect(() => {
@@ -35,15 +35,15 @@ export function BoardProvider({ children }) {
   };
 
   const deleteBoard = (id) => {
-    UseAxios(`/api/boards/${id}`, "", setBoards, "delete");
+    UseAxios(`/api/boards/${id}`, setBoards, "delete");
   };
 
   const addNewBoard = (board) => {
-    UseAxios("/api/boards", "boards", setBoards, "post", board);
+    UseAxios("/api/boards", setBoards, "post", board);
   };
 
   const editBoard = (board) => {
-    UseAxios("/api/boards", "boards", setBoards, "put", board);
+    UseAxios("/api/boards", setBoards, "put", board);
   };
 
   const changeBoardName = (e) => {

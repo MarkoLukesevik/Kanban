@@ -23,16 +23,16 @@ export function ModalProvider({ children }) {
     setIsEditModalActive(!isEditModalActive);
   };
 
-  const changeCurrentTask = (id) => {
-    UseAxios(`/api/tasks/${id}`, "", setCurrentTask);
-  };
+  // const changeCurrentTask = (id) => {
+  //   UseAxios(`/api/tasks/${id}`, setCurrentTask);
+  // };
 
   const editTask = (task) => {
-    UseAxios(`/api/tasks/${task.id}`, "", setCurrentTask, "put", task);
+    UseAxios(`/api/tasks/${task.id}`, setCurrentTask, "put", task);
   };
 
   const deleteTask = (task) => {
-    UseAxios(`/api/tasks/${task.id}`, "", setCurrentTask, "delete", task);
+    UseAxios(`/api/tasks/${task.id}`, setCurrentTask, "delete", task);
   };
 
   const handleCurrentTaskChange = (e) => {
@@ -92,7 +92,7 @@ export function ModalProvider({ children }) {
         isEditModalActive,
         handleEditModalActivation,
         currentTask,
-        changeCurrentTask,
+        // changeCurrentTask,
         editTask,
         deleteTask,
         handleStatusChange,

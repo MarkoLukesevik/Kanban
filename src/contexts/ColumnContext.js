@@ -12,37 +12,21 @@ export function ColumnsProvider({ children }) {
 
   const [columns, setColumns] = useState([]);
   useEffect(() => {
-    UseAxios(`/api/boards/${board?.id}/columns`, "names", setColumns);
+    if (board) {
+      UseAxios(`/api/boards/${board?.id}/columns`, setColumns);
+    }
   }, [board]);
 
   const addNewColumn = (column) => {
-    UseAxios(
-      `/api/boards/${board?.id}/columns`,
-      "names",
-      setColumns,
-      "post",
-      column
-    );
+    UseAxios(`/api/boards/${board?.id}/columns`, setColumns, "post", column);
   };
 
   const editColumn = (column) => {
-    UseAxios(
-      `/api/boards/${board?.id}/columns`,
-      "names",
-      setColumns,
-      "put",
-      column
-    );
+    UseAxios(`/api/boards/${board?.id}/columns`, setColumns, "put", column);
   };
 
   const deleteColumn = (column) => {
-    UseAxios(
-      `/api/boards/${board?.id}/columns`,
-      "names",
-      setColumns,
-      "delete",
-      column
-    );
+    UseAxios(`/api/boards/${board?.id}/columns`, setColumns, "delete", column);
   };
 
   const handleAddingColumn = () => {

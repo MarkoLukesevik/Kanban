@@ -11,15 +11,15 @@ export function TasksProvider({ children }) {
   const { board } = useContext(BoardContext);
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    UseAxios(`api/boards/${board?.id}/tasks`, "", setTasks);
+    UseAxios(`api/boards/${board?.id}/tasks`, setTasks);
   }, [board]);
 
   const getUpdatedTasks = () => {
-    UseAxios(`api/boards/${board?.id}/tasks`, "", setTasks);
+    UseAxios(`api/boards/${board?.id}/tasks`, setTasks);
   };
 
   const addNewTask = (task) => {
-    UseAxios(`api/boards/${board.id}/tasks`, "", setTasks, "post", task);
+    UseAxios(`api/boards/${board.id}/tasks`, setTasks, "post", task);
   };
 
   return (
