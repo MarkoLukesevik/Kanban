@@ -23,10 +23,6 @@ export function ModalProvider({ children }) {
     setIsEditModalActive(!isEditModalActive);
   };
 
-  // const changeCurrentTask = (id) => {
-  //   UseAxios(`/api/tasks/${id}`, setCurrentTask);
-  // };
-
   const editTask = (task) => {
     UseAxios(`/api/tasks/${task.id}`, setCurrentTask, "put", task);
   };
@@ -92,7 +88,6 @@ export function ModalProvider({ children }) {
         isEditModalActive,
         handleEditModalActivation,
         currentTask,
-        // changeCurrentTask,
         editTask,
         deleteTask,
         handleStatusChange,
