@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import {BaseModalComponent} from "../../base-components/base-modal/base-modal.component";
 
 @Component({
   selector: 'app-register-login-modal',
   standalone: true,
-  imports: [],
+  imports: [BaseModalComponent],
   templateUrl: './register-login-modal.component.html',
-  styleUrl: './register-login-modal.component.scss'
+  styleUrl: './register-login-modal.component.scss',
 })
-export class RegisterLoginModalComponent {
-
-}
+export class RegisterLoginModalComponent {}

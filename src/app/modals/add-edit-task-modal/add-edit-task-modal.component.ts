@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import {BaseModalComponent} from "../../base-components/base-modal/base-modal.component";
 
 @Component({
   selector: 'app-add-edit-task-modal',
   standalone: true,
-  imports: [],
+  imports: [BaseModalComponent],
   templateUrl: './add-edit-task-modal.component.html',
-  styleUrl: './add-edit-task-modal.component.scss'
+  styleUrl: './add-edit-task-modal.component.scss',
 })
-export class AddEditTaskModalComponent {
-
-}
+export class AddEditTaskModalComponent {}
