@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import CreateSubtaskRequest from '../requests/subtask-requests/create-subtask-request';
-import Subtask from '../models/subtask';
 import { Observable } from 'rxjs';
+import Subtask from '../models/subtask';
+import CreateSubtaskRequest from '../requests/subtask-requests/create-subtask-request';
 import EditSubtaskRequest from '../requests/subtask-requests/edit-subtask-request';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import Task from '../models/task';
 import { Observable } from 'rxjs';
+import Task from '../models/task';
 import CreateTaskRequest from '../requests/task-requests/create-task-request';
 import EditTaskRequest from '../requests/task-requests/edit-task-request';
 
