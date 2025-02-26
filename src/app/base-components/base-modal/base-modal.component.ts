@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -9,9 +9,12 @@ import { ModalService } from '../../services/modal.service';
   styleUrl: './base-modal.component.scss',
 })
 export class BaseModalComponent {
+  @Input() disableClose: boolean = false;
+
   constructor(private modalService: ModalService) {}
 
   public closeModal(): void {
+    if (this.disableClose) return;
     this.modalService.close(null);
   }
 }
