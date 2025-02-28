@@ -14,7 +14,9 @@ export class ApiService {
   }
 
   post<T>(url: string, body: any): Observable<T> {
-    return this.http.post<T>(this.baseurl + url, body);
+    return this.http.post<T>(this.baseurl + url, body, {
+      withCredentials: true,
+    });
   }
 
   put<T>(url: string, body: any): Observable<T> {

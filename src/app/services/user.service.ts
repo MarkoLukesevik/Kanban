@@ -17,11 +17,15 @@ export class UserService {
     return this.loggedInUser;
   }
 
+  public setLoggedInUser(user: User): void {
+    this.loggedInUser.set(user);
+  }
+
   public login(request: LoginUserRequest): Observable<User> {
-    return this.apiService.post<User>('/login', request);
+    return this.apiService.post<User>('login', request);
   }
 
   public register(request: RegisterUserRequest): Observable<User> {
-    return this.apiService.post<User>('/register', request);
+    return this.apiService.post<User>('register', request);
   }
 }

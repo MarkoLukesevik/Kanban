@@ -12,14 +12,14 @@ export class SubtaskService {
   constructor(private apiService: ApiService) {}
 
   public createSubtask(request: CreateSubtaskRequest): Observable<Subtask> {
-    return this.apiService.post<Subtask>('/subtask', request);
+    return this.apiService.post<Subtask>('subtask', request);
   }
 
   public editSubtask(request: EditSubtaskRequest): Observable<Subtask> {
-    return this.apiService.put<Subtask>(`/subtask`, request);
+    return this.apiService.put<Subtask>(`subtask`, request);
   }
 
   public deleteSubtask(subtaskId: string): Observable<void> {
-    return this.apiService.delete<void>(`/subtask?subtaskId=${subtaskId}`);
+    return this.apiService.delete<void>(`subtask?subtaskId=${subtaskId}`);
   }
 }

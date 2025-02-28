@@ -21,22 +21,22 @@ export class BoardService {
   }
 
   public getAllBoards(kanbanId: string): Observable<Board[]> {
-    return this.apiService.get<Board[]>(`/boards/${kanbanId}`);
+    return this.apiService.get<Board[]>(`boards/${kanbanId}`);
   }
 
   public getBoardById(boardId: string): Observable<Board> {
-    return this.apiService.get<Board>(`/boards?id=${boardId}`);
+    return this.apiService.get<Board>(`boards?id=${boardId}`);
   }
 
   public deleteBoard(boardId: string): Observable<void> {
-    return this.apiService.delete(`/boards?id=${boardId}`);
+    return this.apiService.delete(`boards?id=${boardId}`);
   }
 
   public createBoard(request: CreateBoardRequest): Observable<Board> {
-    return this.apiService.post<Board>('/boards', request);
+    return this.apiService.post<Board>('boards', request);
   }
 
   public editBoard(request: EditBoardRequest): Observable<Board> {
-    return this.apiService.put<Board>('/boards', request);
+    return this.apiService.put<Board>('boards', request);
   }
 }

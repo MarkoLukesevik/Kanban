@@ -15,7 +15,11 @@ export class KanbanService {
     return this.kanbanBoard;
   }
 
+  public setkanban(kanban: Kanban): void {
+    this.kanbanBoard.set(kanban);
+  }
+
   public getKanbanForUser(userId: string): Observable<Kanban> {
-    return this.apiService.get<Kanban>(`/kanban/?userId=${userId}`);
+    return this.apiService.get<Kanban>(`kanban/?userId=${userId}`);
   }
 }
