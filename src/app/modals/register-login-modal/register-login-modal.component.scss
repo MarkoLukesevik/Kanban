@@ -38,6 +38,7 @@
 
     &-submit-button:disabled {
       background-color: var(--base-light-grey-color);
+      color: #828fa351;
       cursor: not-allowed;
     }
 
