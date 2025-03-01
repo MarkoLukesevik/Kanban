@@ -88,7 +88,6 @@ export class RegisterLoginModalComponent {
     this.validateEmail();
     this.validatePassword();
 
-    console.log;
     if (this.emailError || this.passwordError) return;
 
     const request: RegisterUserRequest = {
@@ -100,7 +99,7 @@ export class RegisterLoginModalComponent {
     };
 
     this.userService.register(request).subscribe({
-      next: (user: User): void => {
+      next: (): void => {
         this.toggleActiveView();
         this.toastService.success('Account successfully registered!');
       },
