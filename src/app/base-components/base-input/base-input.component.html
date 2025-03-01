@@ -10,6 +10,7 @@
       [type]="type"
       [(ngModel)]="value"
       [placeholder]="placeholder"
+      (input)="handleValueChange()"
     />
     <span class="base-input__error" *ngIf="error">{{ error }}</span>
   </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
@@ -16,6 +16,11 @@ export class BaseInputComponent {
   @Input() value: string = '';
   @Input() type: 'text' | 'email' | 'password' = 'text';
   @Input() error: string = '';
+  @Output() handleInputChange: EventEmitter<string> = new EventEmitter();
 
   constructor(public themeService: ThemeService) {}
+
+  handleValueChange() {
+    this.handleInputChange.emit(this.value);
+  }
 }
