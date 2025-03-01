@@ -1,1 +1,16 @@
-<p>base-input works!</p>
+<div
+  class="base-input"
+  [class.base-input-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <label class="base-input__label" *ngIf="label">{{ label }}</label>
+  <div class="base-input__wrapper">
+    <input
+      class="base-input__field"
+      [class.base-input__field-error]="error"
+      [type]="type"
+      [(ngModel)]="value"
+      [placeholder]="placeholder"
+    />
+    <span class="base-input__error" *ngIf="error">{{ error }}</span>
+  </div>
+</div>

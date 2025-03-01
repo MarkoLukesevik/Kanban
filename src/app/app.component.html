@@ -1,4 +1,7 @@
-<div class="kanban">
+<div
+  class="kanban"
+  [class.kanban-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
   <div class="kanban-sidebar">
     <app-sidebar />
   </div>

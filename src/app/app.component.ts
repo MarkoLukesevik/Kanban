@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './services/user.service';
 import { concatMap } from 'rxjs';
-import { KanbanService } from './services/kanban.service';
-import User from './models/user';
-import { BoardService } from './services/board.service';
-import Board from './models/board';
+
+import { UserService } from './services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { KanbanService } from './services/kanban.service';
+import { BoardService } from './services/board.service';
+import { ThemeService } from './services/theme.service';
+
+import User from './models/user';
+import Board from './models/board';
+
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BoardPresenterComponent } from './components/board-presenter/board-presenter.component';
@@ -23,6 +27,7 @@ export class AppComponent implements OnInit {
     private kanbanService: KanbanService,
     private boardService: BoardService,
     private toastService: ToastrService,
+    public themeService: ThemeService,
   ) {}
 
   ngOnInit() {
