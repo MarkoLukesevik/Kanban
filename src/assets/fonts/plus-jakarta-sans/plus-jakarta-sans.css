@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(PlusJakartaSans-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url(PlusJakartaSans-ExtraLightItalic.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(PlusJakartaSans-Light.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url(PlusJakartaSans-LightItalic.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(PlusJakartaSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(PlusJakartaSans-Italic.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(PlusJakartaSans-Medium.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(PlusJakartaSans-MediumItalic.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(PlusJakartaSans-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(PlusJakartaSans-SemiBoldItalic.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(PlusJakartaSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(PlusJakartaSans-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(PlusJakartaSans-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: "plus-jakarta-sans";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url(PlusJakartaSans-ExtraBoldItalic.ttf);
+}
