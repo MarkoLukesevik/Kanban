@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   private getKanbanForUser(userId: string): void {
     this.kanbanService.getKanbanForUser(userId).subscribe({
       next: (kanban: Kanban): void => {
-        this.kanbanService.setkanban(kanban);
+        this.kanbanService.setKanban(kanban);
         if (kanban.boards.length > 0) {
           this.boardService.getBoardById(kanban.boards[0].id).subscribe({
             next: (board: Board): void => this.boardService.setBoard(board),

@@ -6,11 +6,45 @@
 
 .kanban {
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
 
   background-color: var(--base-light-grey-color);
 
   &-dark {
     background-color: var(--base-black-color);
+  }
+
+  &-header {
+    display: flex;
+    flex: 0 1 auto;
+  }
+
+  &-content {
+    display: flex;
+    flex: 1 1 auto;
+
+    &__sidebar {
+      display: none;
+    }
+
+    &___board-presenter {
+      display: flex;
+      flex: 1 1 auto;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .kanban-content__sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 260px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .kanban-content__sidebar {
+    flex: 0 1 300px;
   }
 }

@@ -15,7 +15,7 @@ export class KanbanService {
     return this.kanbanBoard;
   }
 
-  public setkanban(kanban: Kanban): void {
+  public setKanban(kanban: Kanban): void {
     this.kanbanBoard.set(kanban);
   }
 

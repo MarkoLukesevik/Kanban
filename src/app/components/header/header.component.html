@@ -1,1 +1,63 @@
-<div class="header"></div>
+<div
+  class="header"
+  [class.header-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <div class="header-logo">
+    <img src="assets/images/kanban-logo.svg" alt="" />
+    <img
+      *ngIf="themeService.getCurrentTheme()() === 'light'"
+      class="header-logo__text"
+      src="assets/images/kanban-text-logo.svg"
+      alt=""
+    />
+    <img
+      *ngIf="themeService.getCurrentTheme()() === 'dark'"
+      class="header-logo__text"
+      src="assets/images/kanban-text-logo-dark.svg"
+      alt=""
+    />
+  </div>
+
+  <div class="header-content">
+    <div class="header-content__title">
+      <h1>{{ getSelectedBoardName() }}</h1>
+      <div class="header-content__title-arrow">
+        <i *ngIf="!isSidebarPopupOpen" class="fas fa-chevron-down"></i>
+        <i *ngIf="isSidebarPopupOpen" class="fas fa-chevron-up"></i>
+      </div>
+    </div>
+
+    <div class="header-content__actions">
+      <button class="button button-primary header-content__actions-button">
+        <i class="fas fa-plus header-content__actions-button__icon"></i>
+        <span class="header-content__actions-button__text">+ Add new task</span>
+      </button>
+
+      <div
+        class="header-content__actions-more"
+        (click)="toggleActionsPopup()"
+        (appClickOutside)="closeActionsPopup()"
+      >
+        <i class="fas fa-ellipsis-vertical"></i>
+
+        <div
+          *ngIf="isMoreActionsPopupOpen"
+          class="header-content__actions-more-popup"
+        >
+          <button
+            class="header-content__actions-more-popup__edit-button"
+            (click)="handleAddNewBoardClick()"
+          >
+            Edit Board
+          </button>
+          <button
+            class="header-content__actions-more-popup__delete-button"
+            (click)="handleDeleteBoardClick()"
+          >
+            Delete Board
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
