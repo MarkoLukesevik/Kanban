@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
 import { KanbanService } from './services/kanban.service';
@@ -49,11 +50,13 @@ export class AppComponent implements OnInit {
         if (kanban.boards.length > 0) {
           this.boardService.getBoardById(kanban.boards[0].id).subscribe({
             next: (board: Board): void => this.boardService.setBoard(board),
-            error: (error: Error) => this.toastService.error(error.message),
+            error: (httpErrorResponse: HttpErrorResponse) =>
+              this.toastService.error(httpErrorResponse.error.error),
           });
         }
       },
-      error: (error: Error) => this.toastService.error(error.message),
+      error: (httpErrorResponse: HttpErrorResponse) =>
+        this.toastService.error(httpErrorResponse.error.error),
     });
   }
 }
