@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
 import { ThemeService } from '../../services/theme.service';
 import { UserService } from '../../services/user.service';
+import { ModalService } from '../../services/modal.service';
 
 import User from '../../models/user';
+import RegisterUserRequest from '../../requests/user-requests/register-user-request';
 
 import { BaseModalComponent } from '../../base-components/base-modal/base-modal.component';
 import { BaseInputComponent } from '../../base-components/base-input/base-input.component';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ModalService } from '../../services/modal.service';
-import RegisterUserRequest from '../../requests/user-requests/register-user-request';
 
 @Component({
   selector: 'app-register-login-modal',
@@ -103,9 +103,8 @@ export class RegisterLoginModalComponent {
         this.toggleActiveView();
         this.toastService.success('Account successfully registered!');
       },
-      error: (httpErrorResponse: HttpErrorResponse) => {
-        this.toastService.error(httpErrorResponse.error.error);
-      },
+      error: (httpErrorResponse: HttpErrorResponse) =>
+        this.toastService.error(httpErrorResponse.error.error),
     });
   }
 
@@ -117,9 +116,8 @@ export class RegisterLoginModalComponent {
           this.userService.setLoggedInUser(user);
           this.modalService.close(user);
         },
-        error: (httpErrorResponse: HttpErrorResponse) => {
-          this.toastService.error(httpErrorResponse.error.error);
-        },
+        error: (httpErrorResponse: HttpErrorResponse) =>
+          this.toastService.error(httpErrorResponse.error.error),
       });
   }
   // endregion

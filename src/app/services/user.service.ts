@@ -9,7 +9,10 @@ import RegisterUserRequest from '../requests/user-requests/register-user-request
   providedIn: 'root',
 })
 export class UserService {
-  private loggedInUser = signal<User | null>(null);
+  private readonly storedUser: User | null = JSON.parse(
+    localStorage.getItem('user') ?? 'null',
+  );
+  private loggedInUser = signal<User | null>(this.storedUser ?? null);
 
   constructor(private apiService: ApiService) {}
 
@@ -19,6 +22,7 @@ export class UserService {
 
   public setLoggedInUser(user: User): void {
     this.loggedInUser.set(user);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   public login(request: LoginUserRequest): Observable<User> {
