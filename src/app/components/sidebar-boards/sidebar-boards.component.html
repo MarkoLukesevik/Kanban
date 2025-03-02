@@ -1,0 +1,24 @@
+<div
+  class="sidebar-boards"
+  [class.sidebar-boards-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <p class="sidebar-boards__title">All boards ({{ boards.length }})</p>
+
+  <div class="sidebar-boards__list">
+    <ul>
+      <li
+        [class.active-item]="selectedBoard?.id === board.id"
+        *ngFor="let board of boards"
+        (click)="handleBoardClick(board, $event)"
+      >
+        <i class="fas fa-table-list"></i>
+        <span> {{ board.name }}</span>
+      </li>
+
+      <button class="sidebar-boards__list-create-button">
+        <i class="fas fa-table-list"></i>
+        <span>+ Create New Board</span>
+      </button>
+    </ul>
+  </div>
+</div>

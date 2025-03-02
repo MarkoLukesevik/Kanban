@@ -48,8 +48,10 @@ export class AppComponent implements OnInit {
       next: (kanban: Kanban): void => {
         this.kanbanService.setKanban(kanban);
         if (kanban.boards.length > 0) {
+          this.boardService.setAllBoards(kanban.boards);
           this.boardService.getBoardById(kanban.boards[0].id).subscribe({
-            next: (board: Board): void => this.boardService.setBoard(board),
+            next: (board: Board): void =>
+              this.boardService.setSelectedBoard(board),
             error: (httpErrorResponse: HttpErrorResponse) =>
               this.toastService.error(httpErrorResponse.error.error),
           });

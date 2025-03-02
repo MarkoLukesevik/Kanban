@@ -1,1 +1,15 @@
-<p>theme works!</p>
+<div
+  class="theme"
+  [class.theme-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <img src="assets/images/light-theme.svg" alt="" />
+  <div
+    class="theme-toggle"
+    [class.theme-toggle__active]="themeService.getCurrentTheme()() === 'dark'"
+    (click)="themeService.toggleTheme()"
+  >
+    <div class="theme-toggle__circle"></div>
+  </div>
+
+  <img src="assets/images/dark-theme.svg" alt="" />
+</div>

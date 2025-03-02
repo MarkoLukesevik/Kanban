@@ -21,7 +21,7 @@
   <div class="header-content">
     <div class="header-content__title">
       <h1>{{ getSelectedBoardName() }}</h1>
-      <div class="header-content__title-arrow">
+      <div class="header-content__title-arrow" (click)="openSidebarModal()">
         <i *ngIf="!isSidebarPopupOpen" class="fas fa-chevron-down"></i>
         <i *ngIf="isSidebarPopupOpen" class="fas fa-chevron-up"></i>
       </div>

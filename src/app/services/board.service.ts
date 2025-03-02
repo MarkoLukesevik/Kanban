@@ -9,15 +9,24 @@ import EditBoardRequest from '../requests/board-requests/edit-board-request';
   providedIn: 'root',
 })
 export class BoardService {
+  private allBoards = signal(<Board[]>[]);
   private selectedBoard = signal<Board | null>(null);
   constructor(private apiService: ApiService) {}
 
-  public getBoard(): Signal<Board | null> {
+  public getSelectedBoard(): Signal<Board | null> {
     return this.selectedBoard;
   }
 
-  public setBoard(board: Board): void {
+  public setSelectedBoard(board: Board): void {
     this.selectedBoard.set(board);
+  }
+
+  public getAllLocalBoards(): Signal<Board[]> {
+    return this.allBoards;
+  }
+
+  public setAllBoards(boards: Board[]): void {
+    this.allBoards.set(boards);
   }
 
   public getAllBoards(kanbanId: string): Observable<Board[]> {

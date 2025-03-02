@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ClickOutsideDirective } from '../../directives/click-outside-directive';
+
 import { BoardService } from '../../services/board.service';
 import { ModalService } from '../../services/modal.service';
 import { ThemeService } from '../../services/theme.service';
+
 import { SidebarPopupComponent } from '../../modals/sidebar-popup/sidebar-popup.component';
-import { ClickOutsideDirective } from '../../directives/click-outside-directive';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +27,7 @@ export class HeaderComponent {
   ) {}
 
   public getSelectedBoardName(): string {
-    const board = this.boardService.getBoard()();
+    const board = this.boardService.getSelectedBoard()();
     return board ? board.name : '';
   }
 
