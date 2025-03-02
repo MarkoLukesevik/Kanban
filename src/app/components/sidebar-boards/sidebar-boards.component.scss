@@ -54,13 +54,13 @@
         cursor: pointer;
 
         &.active-item {
-          background-color: var(--base-purple_color);
+          background-color: var(--base-purple-color);
           color: var(--base-white-color);
         }
 
         &:hover {
           background-color: var(--base-light-grey-color);
-          color: var(--base-purple_color);
+          color: var(--base-purple-color);
         }
       }
     }
@@ -73,7 +73,7 @@
 
       width: 90%;
       background-color: transparent;
-      color: var(--base-purple_color);
+      color: var(--base-purple-color);
       padding: 1rem 1.5rem;
       border: none;
       border-top-right-radius: 100px;
@@ -95,7 +95,7 @@
     li:hover,
     .sidebar-boards__list-create-button:hover {
       background-color: var(--base-white-color);
-      color: var(--base-purple_color);
+      color: var(--base-purple-color);
     }
   }
 }

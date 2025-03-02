@@ -1,8 +1,8 @@
 @import url("assets/fonts/plus-jakarta-sans/plus-jakarta-sans.css");
 
 :root {
-  --base-purple_color: #635fc7;
-  --base-purple_color-hover: #a8a4ff;
+  --base-purple-color: #635fc7;
+  --base-purple-color-hover: #a8a4ff;
   --base-black-color: #000112;
   --base-very-dark-grey-color: #20212c;
   --base-dark-grey-color: #2b2c37;
@@ -52,17 +52,17 @@ body {
 }
 
 .button-primary {
-  background-color: var(--base-purple_color);
+  background-color: var(--base-purple-color);
   color: var(--base-white-color);
 
   &:hover {
-    background-color: var(--base-purple_color-hover);
+    background-color: var(--base-purple-color-hover);
   }
 }
 
 .button-secondary {
   background-color: #635fc71a;
-  color: var(--base-purple_color);
+  color: var(--base-purple-color);
 
   &:hover {
     background-color: #635fc73f;
@@ -79,7 +79,7 @@ body {
 }
 
 .button-primary-l {
-  background-color: var(--base-purple_color);
+  background-color: var(--base-purple-color);
   color: var(--base-white-color);
 
   padding: 0.875rem;
@@ -88,6 +88,6 @@ body {
   font-size: 1rem;
 
   &:hover {
-    background-color: var(--base-purple_color-hover);
+    background-color: var(--base-purple-color-hover);
   }
 }

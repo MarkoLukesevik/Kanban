@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClickOutsideDirective } from '../../directives/click-outside-directive';
@@ -17,6 +17,8 @@ import { SidebarPopupComponent } from '../../modals/sidebar-popup/sidebar-popup.
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  @Input() showBorderUnderLogo: boolean = false;
+
   public isSidebarPopupOpen = false;
   public isMoreActionsPopupOpen = false;
 

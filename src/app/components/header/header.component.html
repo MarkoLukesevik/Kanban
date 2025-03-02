@@ -2,7 +2,7 @@
   class="header"
   [class.header-dark]="themeService.getCurrentTheme()() === 'dark'"
 >
-  <div class="header-logo">
+  <div class="header-logo" [class.header-logo__border]="showBorderUnderLogo">
     <img src="assets/images/kanban-logo.svg" alt="" />
     <img
       *ngIf="themeService.getCurrentTheme()() === 'light'"

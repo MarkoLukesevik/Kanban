@@ -3,15 +3,24 @@
   [class.kanban-dark]="themeService.getCurrentTheme()() === 'dark'"
 >
   <div class="kanban-header">
-    <app-header />
+    <app-header [showBorderUnderLogo]="!isSidebarVisible" />
   </div>
 
   <div class="kanban-content">
-    <div class="kanban-content__sidebar">
-      <app-sidebar />
+    <div *ngIf="isSidebarVisible" class="kanban-content__sidebar">
+      <app-sidebar (handleHideSidebar)="toggleSidebar()" />
     </div>
+
     <div class="kanban-content__board-presenter">
       <app-board-presenter />
     </div>
+
+    <button
+      *ngIf="!isSidebarVisible"
+      class="kanban-content__show-sidebar-button"
+      (click)="toggleSidebar()"
+    >
+      <i class="fas fa-eye"></i>
+    </button>
   </div>
 </div>

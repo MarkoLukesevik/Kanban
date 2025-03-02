@@ -21,7 +21,7 @@
   &-toggle {
     width: 50px;
     height: 24px;
-    background-color: var(--base-purple_color);
+    background-color: var(--base-purple-color);
     border-radius: 12px;
     position: relative;
     cursor: pointer;
@@ -35,7 +35,7 @@
       position: absolute;
       top: 2px;
       left: 2px;
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
     &__active .theme-toggle__circle {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+
 import { ThemeService } from '../../services/theme.service';
+
 import { BaseModalComponent } from '../../base-components/base-modal/base-modal.component';
 import { SidebarBoardsComponent } from '../../components/sidebar-boards/sidebar-boards.component';
 import { ThemeComponent } from '../../components/theme/theme.component';

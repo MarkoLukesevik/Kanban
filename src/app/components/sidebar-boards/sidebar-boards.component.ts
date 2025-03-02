@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BoardService } from '../../services/board.service';
-import Board from '../../models/board';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { BoardService } from '../../services/board.service';
 import { ThemeService } from '../../services/theme.service';
+
+import Board from '../../models/board';
 
 @Component({
   selector: 'app-sidebar-boards',
@@ -11,18 +13,13 @@ import { ThemeService } from '../../services/theme.service';
   templateUrl: './sidebar-boards.component.html',
   styleUrl: './sidebar-boards.component.scss',
 })
-export class SidebarBoardsComponent implements OnInit {
-  public boards: Board[] = [];
-  public selectedBoard: Board | null = null;
+export class SidebarBoardsComponent {
+  public boards = this.boardService.getAllLocalBoards();
+  public selectedBoard = this.boardService.getSelectedBoard();
   constructor(
     private boardService: BoardService,
     public themeService: ThemeService,
   ) {}
-
-  ngOnInit() {
-    this.boards = this.boardService.getAllLocalBoards()();
-    this.selectedBoard = this.boardService.getSelectedBoard()();
-  }
 
   public handleBoardClick(board: Board, event: Event): void {
     event.stopPropagation();

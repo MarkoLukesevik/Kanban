@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
@@ -22,9 +23,16 @@ import { RegisterLoginModalComponent } from './modals/register-login-modal/regis
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [SidebarComponent, HeaderComponent, BoardPresenterComponent],
+  imports: [
+    SidebarComponent,
+    HeaderComponent,
+    BoardPresenterComponent,
+    CommonModule,
+  ],
 })
 export class AppComponent implements OnInit {
+  public isSidebarVisible: boolean = true;
+
   constructor(
     private modalService: ModalService,
     private kanbanService: KanbanService,
@@ -41,6 +49,10 @@ export class AppComponent implements OnInit {
       this.modalService
         .open(RegisterLoginModalComponent)
         .subscribe((user: User) => this.getKanbanForUser(user.id));
+  }
+
+  public toggleSidebar(): void {
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 
   private getKanbanForUser(userId: string): void {

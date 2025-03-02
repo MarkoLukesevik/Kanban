@@ -1,1 +1,22 @@
-<div class="sidebar"></div>
+<div
+  class="sidebar"
+  [class.sidebar-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <div class="sidebar__boards">
+    <app-sidebar-boards />
+  </div>
+
+  <div class="sidebar__footer">
+    <div class="sidebar__footer-theme">
+      <app-theme />
+    </div>
+
+    <button
+      class="sidebar__footer-hide-button"
+      (click)="handleHideSidebar.emit()"
+    >
+      <i class="fas fa-eye-slash"></i>
+      <span>Hide Sidebar</span>
+    </button>
+  </div>
+</div>
