@@ -1,1 +1,24 @@
-<div class="board-presenter"></div>
+<div class="board-presenter">
+  <div *ngIf="!columns.length" class="board-presenter__empty"></div>
+
+  <ng-container *ngIf="columns.length">
+    <div class="board-presenter__column" *ngFor="let column of columns">
+      <h4>{{ column.name }} ({{ column.tasks.length }})</h4>
+
+      <div class="board-presenter__column-tasks">
+        <div
+          class="board-presenter__column-tasks__task"
+          *ngFor="let task of column.tasks"
+        >
+          <p class="board-presenter__column-tasks__task-title">
+            {{ task.title }}
+          </p>
+          <span class="board-presenter__column-tasks__task-subtasks">
+            {{ getNumberOfFinishedSubtasksForTask(task) }} of
+            {{ task.subtasks.length }} subtasks
+          </span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
