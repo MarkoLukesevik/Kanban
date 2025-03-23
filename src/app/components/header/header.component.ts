@@ -8,6 +8,7 @@ import { ModalService } from '../../services/modal.service';
 import { ThemeService } from '../../services/theme.service';
 
 import { SidebarPopupComponent } from '../../modals/sidebar-popup/sidebar-popup.component';
+import { AddEditTaskModalComponent } from '../../modals/add-edit-task-modal/add-edit-task-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -47,6 +48,10 @@ export class HeaderComponent {
 
   public closeActionsPopup(): void {
     this.isMoreActionsPopupOpen = false;
+  }
+
+  public handleAddNewTask(): void {
+    this.modalService.open(AddEditTaskModalComponent);
   }
 
   public handleAddNewBoardClick(): void {}

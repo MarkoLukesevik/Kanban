@@ -1,0 +1,16 @@
+<div
+  class="base-textarea"
+  [class.base-textarea-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <label class="base-textarea__label" *ngIf="label">{{ label }}</label>
+  <div class="base-textarea__wrapper">
+    <textarea
+      class="base-textarea__field"
+      [class.base-textarea__field-error]="error"
+      [(ngModel)]="value"
+      [placeholder]="placeholder"
+      (input)="handleValueChange()"
+    ></textarea>
+    <span class="base-textarea__error" *ngIf="error">{{ error }}</span>
+  </div>
+</div>

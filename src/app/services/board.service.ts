@@ -4,6 +4,8 @@ import { ApiService } from './api.service';
 import Board from '../models/board';
 import CreateBoardRequest from '../requests/board-requests/create-board-request';
 import EditBoardRequest from '../requests/board-requests/edit-board-request';
+import Column from '../models/column';
+import Task from '../models/task';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +29,22 @@ export class BoardService {
 
   public setAllBoards(boards: Board[]): void {
     this.allBoards.set(boards);
+  }
+
+  public addTaskToBoard(task: Task): void {
+    const currentBoard: Board | null = this.selectedBoard();
+    if (!currentBoard) return;
+
+    const updatedBoard: Board = {
+      ...currentBoard,
+      columns: currentBoard.columns.map((column: Column) =>
+        column.id === task.columnId
+          ? { ...column, tasks: [...column.tasks, task] }
+          : column,
+      ),
+    };
+
+    this.selectedBoard.set(updatedBoard);
   }
 
   public getAllBoards(kanbanId: string): Observable<Board[]> {

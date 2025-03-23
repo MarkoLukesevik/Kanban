@@ -1,0 +1,20 @@
+<div
+  class="base-select"
+  [class.base-select-dark]="themeService.getCurrentTheme()() === 'dark'"
+>
+  <label class="base-select__label" *ngIf="label">{{ label }}</label>
+  <div class="base-select__selected" (click)="toggleDropdown()">
+    {{ selectedOption || "Select an option" }}
+    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+  </div>
+
+  <ul
+    *ngIf="isOpen"
+    class="base-select__options"
+    (appClickOutside)="isOpen = false"
+  >
+    <li *ngFor="let option of options" (click)="handleValueChange(option)">
+      {{ option }}
+    </li>
+  </ul>
+</div>

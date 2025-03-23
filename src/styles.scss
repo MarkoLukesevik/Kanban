@@ -51,6 +51,13 @@ body {
   cursor: pointer;
 }
 
+.button-large {
+  padding: 0.75rem;
+  border-radius: 24px;
+
+  font-size: 1rem;
+}
+
 .button-primary {
   background-color: var(--base-purple-color);
   color: var(--base-white-color);
@@ -69,25 +76,16 @@ body {
   }
 }
 
+.button-secondary-dark-mode {
+  background-color: var(--base-white-color);
+  color: var(--base-purple-color);
+}
+
 .button-destructive {
   background-color: var(--base-red-color);
   color: var(--base-white-color);
 
   &:hover {
     background-color: var(--base-red-color-hover);
-  }
-}
-
-.button-primary-l {
-  background-color: var(--base-purple-color);
-  color: var(--base-white-color);
-
-  padding: 0.875rem;
-  border-radius: 24px;
-
-  font-size: 1rem;
-
-  &:hover {
-    background-color: var(--base-purple-color-hover);
   }
 }

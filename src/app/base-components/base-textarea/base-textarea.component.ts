@@ -5,17 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'app-base-input',
+  selector: 'app-base-textarea',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './base-input.component.html',
-  styleUrl: './base-input.component.scss',
+  templateUrl: './base-textarea.component.html',
+  styleUrl: './base-textarea.component.scss',
 })
-export class BaseInputComponent {
+export class BaseTextareaComponent {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() value: string = '';
-  @Input() type: 'text' | 'email' | 'password' = 'text';
   @Input() error: string = '';
   @Output() handleInputChange: EventEmitter<string> = new EventEmitter();
 

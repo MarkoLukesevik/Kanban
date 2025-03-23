@@ -1,0 +1,79 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.base-select {
+  position: relative;
+
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  row-gap: 0.5rem;
+
+  cursor: pointer;
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--base-medium-grey-color);
+  }
+
+  &__selected {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--base-white-color);
+    color: var(--base-black-color);
+    border: 1px solid #828fa33f;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+
+    font-size: 0.875rem;
+  }
+
+  &__options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    list-style: none;
+    background-color: var(--base-white-color);
+    border: 1px solid #828fa33f;
+    border-radius: 4px;
+    z-index: 2;
+
+    li {
+      padding: 0.5rem 1rem;
+      transition: background 0.2s ease-in-out;
+      color: var(--base-black-color);
+      font-size: 0.875rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--base-purple-color);
+        color: var(--base-white-color);
+      }
+    }
+  }
+
+  &-dark {
+    .base-select__selected {
+      background-color: var(--base-dark-grey-color);
+      color: var(--base-white-color);
+    }
+
+    .base-select__options {
+      background-color: var(--base-dark-grey-color);
+      color: var(--base-white-color);
+
+      & li {
+        color: var(--base-white-color);
+      }
+    }
+  }
+}

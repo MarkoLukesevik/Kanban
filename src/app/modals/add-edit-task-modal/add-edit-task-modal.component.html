@@ -1,3 +1,73 @@
 <app-base-modal>
-  <div class="add-edit-task-modal"></div>
+  <div
+    class="add-edit-task-modal"
+    [class.add-edit-task-modal-dark]="
+      themeService.getCurrentTheme()() === 'dark'
+    "
+  >
+    <h2 class="add-edit-task-modal__title">
+      {{ getModalTitle() }}
+    </h2>
+
+    <app-base-input
+      [label]="'Title'"
+      [placeholder]="'Title'"
+      [value]="task.title"
+      (handleInputChange)="task.title = $event"
+    />
+
+    <app-base-textarea
+      [label]="'Description'"
+      [placeholder]="'Description'"
+      [value]="task.description"
+      (handleInputChange)="task.description = $event"
+    />
+
+    <div class="add-edit-task-modal__subtasks">
+      <p class="add-edit-task-modal__subtasks-title">Subtasks</p>
+
+      <div
+        *ngFor="let subtask of task.subtasks; index as i"
+        class="add-edit-task-modal__subtasks-item"
+      >
+        <app-base-input
+          [placeholder]="'e.g. Make coffee'"
+          [value]="subtask.title"
+          (handleInputChange)="subtask.title = $event"
+        />
+        <div
+          class="add-edit-task-modal__subtasks-item__delete-icon"
+          (click)="handleSubtaskRemove(i)"
+        >
+          <i class="fas fa-x"></i>
+        </div>
+      </div>
+
+      <button
+        class="button button"
+        [class.button-secondary]="themeService.getCurrentTheme()() === 'light'"
+        [class.button-secondary-dark-mode]="
+          themeService.getCurrentTheme()() === 'dark'
+        "
+        (click)="handleAddNewSubtask()"
+      >
+        + Add New Subtask
+      </button>
+    </div>
+
+    <app-base-select
+      [label]="'Status'"
+      [options]="allStatusOptions"
+      [selectedOption]="task.status"
+      (handleChange)="task.status = $event"
+    />
+
+    <button
+      class="button button-primary add-edit-task-modal__save-button"
+      [disabled]="isSaveButtonSpinnerOn"
+      (click)="handleSaveClick()"
+    >
+      {{ getSaveButtonName() }}
+    </button>
+  </div>
 </app-base-modal>
