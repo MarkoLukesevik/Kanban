@@ -65,6 +65,7 @@ export class AddEditTaskModalComponent implements OnInit {
         this.task = task;
       });
     } else {
+      this.task.description = '';
       this.task.subtasks = [];
       this.handleAddNewSubtask();
       this.task.status = this.allStatusOptions[0];

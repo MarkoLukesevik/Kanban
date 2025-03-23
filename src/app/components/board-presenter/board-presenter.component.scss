@@ -6,4 +6,61 @@
 .board-presenter {
   display: flex;
   flex: 1 1 auto;
+  column-gap: 1.5rem;
+
+  padding: 1.5rem 1rem;
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    row-gap: 1.5rem;
+
+    & h4 {
+      color: var(--base-medium-grey-color);
+
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08rem;
+    }
+
+    &-tasks {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      row-gap: 1.25rem;
+
+      &__task {
+        width: 280px;
+        background-color: var(--base-white-color);
+        padding: 1.5rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 2px #364e7e34;
+
+        &-title {
+          color: var(--base-black-color);
+          font-size: 0.875rem;
+          font-weight: 700;
+        }
+
+        &-subtasks {
+          color: var(--base-medium-grey-color);
+
+          font-size: 0.75rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  &-dark {
+    .board-presenter__column-tasks__task {
+      background-color: var(--base-dark-grey-color);
+
+      &-title {
+        color: var(--base-white-color);
+      }
+    }
+  }
 }
