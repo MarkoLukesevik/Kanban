@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { BoardService } from '../../services/board.service';
 import { ThemeService } from '../../services/theme.service';
+import { ToastrService } from 'ngx-toastr';
 
 import Board from '../../models/board';
 
@@ -14,15 +16,32 @@ import Board from '../../models/board';
   styleUrl: './sidebar-boards.component.scss',
 })
 export class SidebarBoardsComponent {
-  public boards = this.boardService.getAllLocalBoards();
-  public selectedBoard = this.boardService.getSelectedBoard();
+  public boards: Signal<Board[]> = this.boardService.getAllLocalBoards();
+  public selectedBoard: Signal<Board | null> =
+    this.boardService.getSelectedBoard();
+  private isBoardSpinnerOn: boolean = false;
+
   constructor(
     private boardService: BoardService,
+    private toastrService: ToastrService,
     public themeService: ThemeService,
   ) {}
 
-  public handleBoardClick(board: Board, event: Event): void {
+  public handleBoardClick(clickedBoard: Board, event: Event): void {
     event.stopPropagation();
-    this.boardService.setSelectedBoard(board);
+
+    if (this.isBoardSpinnerOn) return;
+    this.isBoardSpinnerOn = true;
+
+    this.boardService.getBoardById(clickedBoard.id).subscribe({
+      next: (board: Board): void => {
+        this.boardService.setSelectedBoard(board);
+        this.isBoardSpinnerOn = false;
+      },
+      error: (httpErrorResponse: HttpErrorResponse): void => {
+        this.toastrService.error(httpErrorResponse.error.error);
+        this.isBoardSpinnerOn = false;
+      },
+    });
   }
 }

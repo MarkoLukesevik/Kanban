@@ -64,12 +64,15 @@ export class AddEditTaskModalComponent implements OnInit {
       this.taskService.getTaskById(this.taskId).subscribe((task: Task) => {
         this.task = task;
       });
-    } else {
-      this.task.description = '';
-      this.task.subtasks = [];
-      this.handleAddNewSubtask();
-      this.task.status = this.allStatusOptions[0];
-    }
+    } else this.initializeNewTask();
+  }
+
+  private initializeNewTask(): void {
+    this.task.title = '';
+    this.task.description = '';
+    this.task.subtasks = [];
+    this.handleAddNewSubtask();
+    this.task.status = this.allStatusOptions[0];
   }
 
   private getAllStatusOptions(): void {
