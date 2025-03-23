@@ -13,6 +13,7 @@
       [label]="'Title'"
       [placeholder]="'Title'"
       [value]="task.title"
+      [error]="titleError"
       (handleInputChange)="task.title = $event"
     />
 
@@ -33,6 +34,7 @@
         <app-base-input
           [placeholder]="'e.g. Make coffee'"
           [value]="subtask.title"
+          [error]="subtaskErrors[i]"
           (handleInputChange)="subtask.title = $event"
         />
         <div

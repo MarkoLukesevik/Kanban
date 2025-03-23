@@ -1,26 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
+import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../../services/modal.service';
 import { TaskService } from '../../services/task.service';
 import { BoardService } from '../../services/board.service';
+import { ThemeService } from '../../services/theme.service';
 
 import Task from '../../models/task';
+import Board from '../../models/board';
+import Subtask from '../../models/subtask';
+import Column from '../../models/column';
+
+import EditTaskRequest from '../../requests/task-requests/edit-task-request';
+import EditSubtaskRequest from '../../requests/subtask-requests/edit-subtask-request';
+import CreateSubtaskRequest from '../../requests/subtask-requests/create-subtask-request';
+import CreateTaskRequest from '../../requests/task-requests/create-task-request';
 
 import { BaseModalComponent } from '../../base-components/base-modal/base-modal.component';
 import { BaseInputComponent } from '../../base-components/base-input/base-input.component';
-import Board from '../../models/board';
-import EditTaskRequest from '../../requests/task-requests/edit-task-request';
-import EditSubtaskRequest from '../../requests/subtask-requests/edit-subtask-request';
-import Subtask from '../../models/subtask';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
-import CreateSubtaskRequest from '../../requests/subtask-requests/create-subtask-request';
-import CreateTaskRequest from '../../requests/task-requests/create-task-request';
 import { BaseTextareaComponent } from '../../base-components/base-textarea/base-textarea.component';
-import { ThemeService } from '../../services/theme.service';
 import { BaseSelectComponent } from '../../base-components/base-select/base-select.component';
-import Column from '../../models/column';
 
 @Component({
   selector: 'app-add-edit-task-modal',
@@ -35,14 +36,16 @@ import Column from '../../models/column';
   templateUrl: './add-edit-task-modal.component.html',
   styleUrl: './add-edit-task-modal.component.scss',
 })
-export class AddEditTaskModalComponent {
+export class AddEditTaskModalComponent implements OnInit {
   @Input() taskId: string | undefined;
 
   public task: Task = {} as Task;
-
   public allStatusOptions: string[] = [];
 
-  private readonly isEditMode: boolean = false;
+  public titleError: string = '';
+  public subtaskErrors: string[] = [];
+
+  private isEditMode: boolean = false;
   public isSaveButtonSpinnerOn: boolean = false;
 
   constructor(
@@ -51,7 +54,9 @@ export class AddEditTaskModalComponent {
     private taskService: TaskService,
     private toastrService: ToastrService,
     public themeService: ThemeService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.getAllStatusOptions();
 
     if (this.taskId) {
@@ -92,6 +97,9 @@ export class AddEditTaskModalComponent {
   }
 
   public handleSaveClick(): void {
+    const isTaskValid: boolean = this.validateTask();
+    if (!isTaskValid) return;
+
     const board: Board | null = this.boardService.getSelectedBoard()();
 
     if (!board) return;
@@ -166,5 +174,23 @@ export class AddEditTaskModalComponent {
         this.isSaveButtonSpinnerOn = false;
       },
     });
+  }
+
+  private validateTask(): boolean {
+    let isTaskValid: boolean = true;
+
+    if (!this.task.title) {
+      this.titleError = "Field can't be empty!";
+      isTaskValid = false;
+    } else this.titleError = '';
+
+    this.task.subtasks.forEach((subtask: Subtask, index: number): void => {
+      if (!subtask.title) {
+        this.subtaskErrors[index] = "Field can't be empty!";
+        isTaskValid = false;
+      } else this.subtaskErrors[index] = '';
+    });
+
+    return isTaskValid;
   }
 }
