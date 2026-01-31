@@ -1,0 +1,30 @@
+.sidebar-popup {
+  position: absolute;
+  top: 70px;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  width: 260px;
+  height: 320px;
+  background-color: var(--base-white-color);
+  box-shadow: 0 0 2px #364e7e34;
+  border-radius: 8px;
+  padding: 1rem 0;
+
+  &__boards {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  &__footer {
+    padding: 0 1rem;
+  }
+
+  &-dark {
+    background-color: var(--base-dark-grey-color);
+  }
+}

@@ -1,0 +1,74 @@
+<app-base-modal>
+  <div
+    class="create-edit-task-modal"
+    [class.create-edit-task-modal-dark]="themeService.currentTheme() === 'dark'"
+  >
+    <h2 class="create-edit-task-modal__title">
+      {{ getModalTitle() }}
+    </h2>
+
+    <app-base-input
+      [label]="'Title'"
+      [placeholder]="'Title'"
+      [value]="task.title"
+      [error]="titleError"
+      (handleInputChange)="task.title = $event"
+    />
+
+    <app-base-textarea
+      [label]="'Description'"
+      [placeholder]="'Description'"
+      [value]="task.description"
+      (handleInputChange)="task.description = $event"
+    />
+
+    <div class="create-edit-task-modal__subtasks">
+      <p class="create-edit-task-modal__subtasks-title">Subtasks</p>
+
+      @for (subtask of task.subtasks; track subtask.id; let i = $index) {
+        <div class="create-edit-task-modal__subtasks-item">
+          <app-base-input
+            [placeholder]="'e.g. Make coffee'"
+            [value]="subtask.title"
+            [error]="subtaskErrors[i]"
+            (handleInputChange)="subtask.title = $event"
+          />
+          <div
+            class="create-edit-task-modal__subtasks-item__delete-icon"
+            (click)="handleSubtaskRemove(i)"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+      }
+
+      <button
+        class="button button"
+        [class.button-secondary]="themeService.currentTheme() === 'light'"
+        [class.button-secondary-dark-mode]="themeService.currentTheme() === 'dark'"
+        (click)="handleAddNewSubtask()"
+      >
+        + Add New Subtask
+      </button>
+    </div>
+
+    <app-base-select
+      [label]="'Status'"
+      [options]="allStatusOptions"
+      [selectedOption]="task.status"
+      (handleChange)="task.status = $event"
+    />
+
+    <button
+      class="button button-primary create-edit-task-modal__save-button"
+      [disabled]="isSaveButtonSpinnerOn"
+      (click)="handleSaveClick()"
+    >
+      @if (isSaveButtonSpinnerOn) {
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      } @else {
+        {{ getSaveButtonName() }}
+      }
+    </button>
+  </div>
+</app-base-modal>

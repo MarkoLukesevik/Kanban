@@ -1,0 +1,79 @@
+.create-edit-task-modal {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  row-gap: 1.5rem;
+
+  width: 90dvw;
+  height: 590px;
+
+  background-color: var(--base-white-color);
+  color: var(--base-medium-grey-color);
+  border-radius: 6px;
+  padding: 2rem;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &-dark {
+    background-color: var(--base-dark-grey-color);
+    color: var(--base-white-color);
+  }
+
+  &__title {
+    margin: 0;
+
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  &__subtasks {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    row-gap: 0.75rem;
+
+    &-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: row;
+      flex: 0 1 auto;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 1rem;
+
+      &__delete-icon {
+        cursor: pointer;
+
+        &:hover {
+          color: var(--base-red-color);
+        }
+      }
+    }
+
+    & button {
+      width: 100%;
+    }
+  }
+
+  &__save-button {
+    &:disabled {
+      background-color: var(--base-light-grey-color);
+      color: #828fa351;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .create-edit-task-modal {
+    width: 480px;
+  }
+}

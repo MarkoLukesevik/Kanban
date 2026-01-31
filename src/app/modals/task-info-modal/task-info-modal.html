@@ -1,0 +1,74 @@
+<app-base-modal>
+  <div class="task-info-modal" [class.task-info-modal-dark]="isDark()">
+    @if (isLoading()) {
+      <div class="task-info-modal__spinner">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      </div>
+    } @else {
+      <div class="task-info-modal__header">
+        <h2 class="task-info-modal__header__title">
+          {{ task.title }}
+        </h2>
+
+        <div class="task-info-modal__header-dots" (appClickOutside)="isDropdownActive = false">
+          <button class="task-info-modal__header-dots__button" (click)="toggleDropdown()">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </button>
+
+          @if (isDropdownActive) {
+            <div
+              class="task-info-modal__header-dots__dropdown"
+              [class.task-info-modal__header-dots__dropdown-dark]="
+                themeService.currentTheme() === 'dark'
+              "
+            >
+              <button
+                class="task-info-modal__header-dots__dropdown-edit-button"
+                (click)="handleEditClick()"
+              >
+                Edit Task
+              </button>
+
+              <button
+                class="task-info-modal__header-dots__dropdown-delete-button"
+                (click)="handleDeleteClick()"
+              >
+                Delete Task
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+
+      <p class="task-info-modal__description">{{ task.description }}</p>
+
+      <div class="task-info-modal__subtasks">
+        <p class="task-info-modal__subtasks-title">
+          Subtasks {{ subtasksCount() }} of {{ task.subtasks.length }}
+        </p>
+
+        <div class="task-info-modal__subtasks-list">
+          @for (subtask of task.subtasks; track subtask.id) {
+            <div
+              class="task-info-modal__subtasks-list__item"
+              [class.task-info-modal__subtasks-list__item-dark]="isDark()"
+            >
+              <app-base-checkbox
+                [label]="subtask.title"
+                [checked]="subtask.isComplete"
+                (handleCheckboxClick)="toggleSubtask(subtask)"
+              />
+            </div>
+          }
+        </div>
+      </div>
+
+      <app-base-select
+        [label]="'Status'"
+        [options]="allStatusOptions"
+        [selectedOption]="task.status"
+        (handleChange)="task.status = $event"
+      />
+    }
+  </div>
+</app-base-modal>

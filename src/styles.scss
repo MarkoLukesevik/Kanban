@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('assets/fonts/plus-jakarta-sans/plus-jakarta-sans.css');
+
+:root {
+  --base-purple-color: #635fc7;
+  --base-purple-color-hover: #a8a4ff;
+  --base-black-color: #000112;
+  --base-very-dark-grey-color: #20212c;
+  --base-dark-grey-color: #2b2c37;
+  --base-medium-grey-color: #828fa3;
+  --base-light-grey-color: #f4f7fd;
+  --base-lines-dark-color: #3e3f4e;
+  --base-lines-light-color: #e4ebfa;
+  --base-white-color: #ffffff;
+  --base-red-color: #ea5555;
+  --base-red-color-hover: #ff9898;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  width: 100dvw;
+  height: 100dvh;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+
+  user-select: none;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.button-large {
+  padding: 0.75rem;
+  border-radius: 24px;
+
+  font-size: 1rem;
+}
+
+.button-primary {
+  background-color: var(--base-purple-color);
+  color: var(--base-white-color);
+
+  &:hover {
+    background-color: var(--base-purple-color-hover);
+  }
+}
+
+.button-secondary {
+  background-color: #635fc71a;
+  color: var(--base-purple-color);
+
+  &:hover {
+    background-color: #635fc73f;
+  }
+}
+
+.button-secondary-dark-mode {
+  background-color: var(--base-white-color);
+  color: var(--base-purple-color);
+}
+
+.button-destructive {
+  background-color: var(--base-red-color);
+  color: var(--base-white-color);
+
+  &:hover {
+    background-color: var(--base-red-color-hover);
+  }
+}

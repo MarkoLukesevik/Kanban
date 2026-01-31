@@ -1,0 +1,14 @@
+<div
+  class="base-checkbox"
+  [class.base-checkbox__checked]="checked"
+  [class.base-checkbox__dark]="isDark()"
+  (click)="handleCheckboxClick.emit(checked)"
+>
+  <div class="base-checkbox__checkmark" [class.base-checkbox__checkmark-dark]="isDark()">
+    <i class="base-checkbox__checkmark-icon fa-solid fa-check"></i>
+  </div>
+
+  @if (label) {
+    <span class="base-checkbox__label">{{ label }}</span>
+  }
+</div>

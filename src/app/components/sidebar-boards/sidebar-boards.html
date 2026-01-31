@@ -1,0 +1,22 @@
+<div class="sidebar-boards" [class.sidebar-boards-dark]="themeService.currentTheme() === 'dark'">
+  <p class="sidebar-boards__title">All boards ({{ boards().length }})</p>
+
+  <div class="sidebar-boards__list">
+    <ul>
+      @for (board of boards(); track board.id) {
+        <li
+          [class.active-item]="selectedBoard()?.id === board.id"
+          (click)="handleBoardClick(board, $event)"
+        >
+          <i class="fas fa-table-list"></i>
+          <span> {{ board.name }}</span>
+        </li>
+      }
+
+      <button class="sidebar-boards__list-create-button">
+        <i class="fas fa-table-list"></i>
+        <span>+ Create New Board</span>
+      </button>
+    </ul>
+  </div>
+</div>

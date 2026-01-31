@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.theme {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1.5rem;
+
+  background-color: var(--base-light-grey-color);
+  padding: 0.875rem;
+  border-radius: 8px;
+
+  &-dark {
+    background-color: var(--base-very-dark-grey-color);
+  }
+
+  &-toggle {
+    width: 50px;
+    height: 24px;
+    background-color: var(--base-purple-color);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &__circle {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s ease;
+    }
+
+    &__active .theme-toggle__circle {
+      transform: translateX(26px);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="header" [class.header-dark]="themeService.currentTheme() === 'dark'">
+  <div class="header-logo" [class.header-logo__border]="showBorderUnderLogo">
+    <img src="images/kanban-logo.svg" alt="" />
+    @if (themeService.currentTheme() === 'light') {
+      <img class="header-logo__text" src="images/kanban-text-logo.svg" alt="" />
+    } @else {
+      <img class="header-logo__text" src="images/kanban-text-logo-dark.svg" alt="" />
+    }
+  </div>
+
+  <div class="header-content">
+    <div class="header-content__title">
+      <h1>{{ selectedBoardName() }}</h1>
+      <div class="header-content__title-arrow" (click)="openSidebarModal()">
+        @if (isSidebarPopupOpen) {
+          <i class="fa-solid fa-chevron-up"></i>
+        } @else {
+          <i class="fa-solid fa-chevron-down"></i>
+        }
+      </div>
+    </div>
+
+    <div class="header-content__actions">
+      <button
+        class="button button-primary header-content__actions-button"
+        (click)="handleAddNewTask()"
+      >
+        <i class="fa-solid fa-plus header-content__actions-button__icon"></i>
+        <span class="header-content__actions-button__text">+ Add new task</span>
+      </button>
+
+      <div
+        class="header-content__actions-more"
+        (click)="toggleActionsPopup()"
+        (appClickOutside)="closeActionsPopup()"
+      >
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+
+        @if (isMoreActionsPopupOpen) {
+          <div class="header-content__actions-more-popup">
+            <button
+              class="header-content__actions-more-popup__edit-button"
+              (click)="handleAddNewBoardClick()"
+            >
+              Edit Board
+            </button>
+            <button
+              class="header-content__actions-more-popup__delete-button"
+              (click)="handleDeleteBoardClick()"
+            >
+              Delete Board
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="board-presenter" [class.board-presenter-dark]="themeService.currentTheme() === 'dark'">
+  @if (isLoading()) {
+    <div class="board-presenter__spinner">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+    </div>
+  } @else {
+    @if (!columns().length) {
+      <div class="board-presenter__empty">
+        <p>This board is empty. Create a new column to get started</p>
+        <button class="button button-primary">+ Add New Column</button>
+      </div>
+    } @else {
+      @for (column of columns(); track column.id) {
+        <div class="board-presenter__column">
+          <h4>{{ column.name }} ({{ column.tasks.length }})</h4>
+
+          <div class="board-presenter__column-tasks">
+            @for (task of column.tasks; track task.id) {
+              <app-task [task]="task" />
+            }
+          </div>
+        </div>
+      }
+    }
+  }
+</div>

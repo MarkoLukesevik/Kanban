@@ -1,0 +1,61 @@
+.login-register-modal {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  row-gap: 1.5rem;
+
+  width: 100%;
+  max-width: 340px;
+
+  background-color: var(--base-white-color);
+  color: var(--base-black-color);
+  padding: 2rem;
+  border-radius: 6px;
+
+  &-dark {
+    background-color: var(--base-dark-grey-color);
+    color: var(--base-white-color);
+  }
+
+  &__title {
+    margin: 0;
+
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    row-gap: 1.5rem;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    &-submit-button:disabled {
+      background-color: var(--base-light-grey-color);
+      color: #828fa351;
+      cursor: not-allowed;
+    }
+
+    &-toggle-button {
+      background-color: transparent;
+      color: var(--base-purple-color);
+      border: none;
+
+      text-align: left;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .login-register-modal {
+    width: 480px;
+    max-width: none;
+  }
+}

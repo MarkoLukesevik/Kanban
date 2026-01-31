@@ -1,0 +1,31 @@
+.task {
+  width: 280px;
+  background-color: var(--base-white-color);
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 2px #364e7e34;
+  cursor: pointer;
+
+  &-dark {
+    background-color: var(--base-dark-grey-color);
+
+    & .task-title {
+      color: var(--base-white-color);
+    }
+  }
+
+  &-title {
+    color: var(--base-black-color);
+    margin-bottom: 0.5rem;
+
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  &-subtasks {
+    color: var(--base-medium-grey-color);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,10 @@
+<div
+  class="task"
+  [class.task-dark]="themeService.currentTheme() === 'dark'"
+  (click)="handleTaskClick()"
+>
+  <p class="task-title">
+    {{ task.title }}
+  </p>
+  <span class="task-subtasks"> {{ subtasksCount }} of {{ task.subtasks.length }} subtasks </span>
+</div>

@@ -1,0 +1,25 @@
+<app-base-modal>
+  <div class="delete-task-modal" [class.delete-task-modal__dark]="isDark()">
+    <h1 class="delete-task-modal__title">Delete this task?</h1>
+    <p class="delete-task-modal__description">
+      Are you sure you want to delete the ‘{{ task.title }}’ task and its subtasks? This action
+      cannot be reversed.
+    </p>
+    <div class="delete-task-modal__footer">
+      <button
+        class="delete-task-modal__footer-button delete-task-modal__footer-button__delete"
+        (click)="handleDeleteClick()"
+      >
+        Delete
+      </button>
+
+      <button
+        class="delete-task-modal__footer-button delete-task-modal__footer-button__cancel"
+        [class.delete-task-modal__footer-button__cancel-dark]="isDark()"
+        (click)="handleCancelClick()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</app-base-modal>

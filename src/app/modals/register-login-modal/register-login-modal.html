@@ -1,0 +1,67 @@
+<app-base-modal [disableClose]="true">
+  <div
+    class="login-register-modal"
+    [class.login-register-modal-dark]="themeService.currentTheme() === 'dark'"
+  >
+    <h2 class="login-register-modal__title">
+      {{ getTextBasedOnActiveView() }}
+    </h2>
+
+    <div class="login-register-modal__content">
+      @if (activeView === 'register') {
+        <app-base-input
+          [label]="'Name'"
+          [placeholder]="'Name'"
+          [value]="name"
+          (handleInputChange)="name = $event"
+        />
+
+        <app-base-input
+          [label]="'Last name'"
+          [placeholder]="'Last name'"
+          [value]="lastName"
+          (handleInputChange)="lastName = $event"
+        />
+
+        <app-base-input
+          [type]="'email'"
+          [label]="'Email'"
+          [placeholder]="'Email'"
+          [value]="email"
+          [error]="emailError"
+          (handleInputChange)="email = $event"
+        />
+      }
+
+      <app-base-input
+        [label]="'Username'"
+        [placeholder]="'Username'"
+        [value]="username"
+        (handleInputChange)="username = $event"
+      />
+
+      <app-base-input
+        [type]="'password'"
+        [label]="'Password'"
+        [placeholder]="'Password'"
+        [value]="password"
+        [error]="passwordError"
+        (handleInputChange)="password = $event"
+      />
+    </div>
+
+    <div class="login-register-modal__footer">
+      <button
+        class="button button-primary login-register-modal__footer-submit-button"
+        [disabled]="isFooterButtonDisabled()"
+        (click)="handleFooterButtonClick()"
+      >
+        {{ getTextBasedOnActiveView() }}
+      </button>
+
+      <button class="login-register-modal__footer-toggle-button" (click)="toggleActiveView()">
+        {{ getActiveViewToggleButtonText() }}
+      </button>
+    </div>
+  </div>
+</app-base-modal>

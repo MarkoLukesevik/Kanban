@@ -1,0 +1,11 @@
+<app-base-modal>
+  <div class="sidebar-popup" [class.sidebar-popup-dark]="themeService.currentTheme() === 'dark'">
+    <div class="sidebar-popup__boards">
+      <app-sidebar-boards />
+    </div>
+
+    <div class="sidebar-popup__footer">
+      <app-theme />
+    </div>
+  </div>
+</app-base-modal>

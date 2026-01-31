@@ -1,0 +1,129 @@
+.task-info-modal {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  row-gap: 1.5rem;
+
+  width: 90dvw;
+  max-height: 590px;
+
+  background-color: var(--base-white-color);
+  color: var(--base-medium-grey-color);
+  border-radius: 6px;
+  padding: 2rem;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &-dark {
+    background-color: var(--base-dark-grey-color);
+    color: var(--base-white-color);
+  }
+
+  &__spinner {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+      font-size: 1.125rem;
+    }
+
+    &-dots {
+      position: relative;
+
+      &__button {
+        border: none;
+        background-color: transparent;
+        color: var(--base-medium-grey-color);
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+
+      &__dropdown {
+        position: absolute;
+        right: 50%;
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        z-index: 1;
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+
+        width: 190px;
+        background-color: var(--base-white-color);
+        border-radius: 0.5rem;
+        padding: 1rem;
+
+        &-dark {
+          background-color: var(--base-very-dark-grey-color);
+        }
+
+        &-edit-button {
+          background-color: transparent;
+          border: none;
+          color: var(--base-medium-grey-color);
+          text-align: left;
+          cursor: pointer;
+        }
+
+        &-delete-button {
+          background-color: transparent;
+          border: none;
+          color: var(--base-red-color);
+          text-align: left;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__description {
+    color: var(--base-medium-grey-color);
+    font-size: 0.865rem;
+  }
+
+  &__subtasks {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &-title {
+      color: var(--base-medium-grey-color);
+      font-size: 0.865rem;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5rem;
+
+      &__item {
+        border-radius: 0.25rem;
+        padding: 0.75rem;
+        background-color: var(--base-light-grey-color);
+
+        &-dark {
+          background-color: var(--base-very-dark-grey-color);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .task-info-modal {
+    width: 480px;
+  }
+}
