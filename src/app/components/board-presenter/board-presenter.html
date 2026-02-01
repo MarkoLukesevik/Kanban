@@ -11,9 +11,21 @@
       <div class="board-presenter__column">
         <h4>{{ column.name }} ({{ column.tasks.length }})</h4>
 
-        <div class="board-presenter__column-tasks">
+        <div
+          cdkDropList
+          [id]="column.id"
+          [cdkDropListData]="column.tasks"
+          class="board-presenter__column-tasks"
+          [cdkDropListConnectedTo]="connectedDropLists"
+          (cdkDropListDropped)="dropTask($event, column)"
+        >
           @for (task of column.tasks; track task.id) {
-            <app-task [task]="task" />
+            <app-task
+              cdkDrag
+              [cdkDragDisabled]="isDragAndDropSaving"
+              [cdkDragData]="task"
+              [task]="task"
+            />
           }
         </div>
       </div>

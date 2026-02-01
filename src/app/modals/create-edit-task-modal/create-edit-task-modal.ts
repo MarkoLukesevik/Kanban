@@ -116,29 +116,9 @@ export class CreateEditTaskModal implements OnInit {
   private handleEditTask(): void {
     if (!this.task) return;
 
-    const editSubtasksRequest: EditSubtaskRequest[] = [];
-
-    this.task.subtasks.forEach((subtask: Subtask) => {
-      const subtaskRequest = {
-        id: subtask.id,
-        title: subtask.title,
-        isComplete: subtask.isComplete,
-      } as EditSubtaskRequest;
-
-      editSubtasksRequest.push(subtaskRequest);
-    });
-
-    const editTaskRequest: EditTaskRequest = {
-      id: this.task.id,
-      title: this.task.title,
-      description: this.task.description,
-      status: this.task.status,
-      subtasks: editSubtasksRequest,
-    };
-
-    this.taskService.editTask(editTaskRequest).subscribe({
-      next: (task: Task): void => {
-        this.boardService.updateBoardTask(task);
+    this.taskService.updateTask(this.task).subscribe({
+      next: (updatedTask: Task) => {
+        this.boardService.updateBoardTask(updatedTask);
         this.modalService.close();
         this.isSaveButtonSpinnerOn = false;
       },

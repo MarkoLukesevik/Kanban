@@ -7,12 +7,31 @@ import Task from '../../models/task';
 
 import CreateTaskRequest from '../../requests/task-requests/create-task-request';
 import EditTaskRequest from '../../requests/task-requests/edit-task-request';
+import EditSubtaskRequest from '../../requests/subtask-requests/edit-subtask-request';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
   constructor(private apiService: ApiService) {}
+
+  public updateTask(task: Task): Observable<Task> {
+    const editSubtasks: EditSubtaskRequest[] = task.subtasks.map((s) => ({
+      id: s.id,
+      title: s.title,
+      isComplete: s.isComplete,
+    }));
+
+    const request: EditTaskRequest = {
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      status: task.status,
+      subtasks: editSubtasks,
+    };
+
+    return this.editTask(request);
+  }
 
   public getTaskById(taskId: string): Observable<Task> {
     return this.apiService.get<Task>(`task?taskId=${taskId}`);
