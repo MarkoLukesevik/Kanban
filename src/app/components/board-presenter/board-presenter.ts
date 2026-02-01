@@ -1,11 +1,10 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, Signal, WritableSignal } from '@angular/core';
 import { ThemeService } from '../../services/theme-service/theme-service';
 import { BoardService } from '../../services/board-service/board-service';
 
 import { TaskComponent } from './task/task.component';
-
-import Board from '../../models/board';
 import Column from '../../models/column';
+import Board from '../../models/board';
 
 @Component({
   selector: 'app-board-presenter',
@@ -17,13 +16,10 @@ export class BoardPresenter {
   public themeService: ThemeService = inject(ThemeService);
   private boardService: BoardService = inject(BoardService);
 
-  public board!: Signal<Board | null>;
+  public board: WritableSignal<Board | null> = this.boardService.selectedBoard;
+  public columns: Signal<Column[]> = this.boardService.columns;
 
-  constructor() {
-    this.board = this.boardService.selectedBoard;
-  }
+  constructor() {}
 
-  public isLoading = computed(() => !this.board());
-
-  public columns: Signal<Column[]> = computed((): Column[] => this.board()?.columns ?? []);
+  public isLoading: Signal<boolean> = computed((): boolean => !this.board());
 }

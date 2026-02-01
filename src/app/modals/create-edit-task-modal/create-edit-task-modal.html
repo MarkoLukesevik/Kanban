@@ -25,7 +25,7 @@
     <div class="create-edit-task-modal__subtasks">
       <p class="create-edit-task-modal__subtasks-title">Subtasks</p>
 
-      @for (subtask of task.subtasks; track subtask.id; let i = $index) {
+      @for (subtask of task.subtasks; let i = $index; track i) {
         <div class="create-edit-task-modal__subtasks-item">
           <app-base-input
             [placeholder]="'e.g. Make coffee'"

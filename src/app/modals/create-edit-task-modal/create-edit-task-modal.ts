@@ -112,11 +112,11 @@ export class CreateEditTaskModal implements OnInit {
     const editSubtasksRequest: EditSubtaskRequest[] = [];
 
     this.task.subtasks.forEach((subtask: Subtask) => {
-      const subtaskRequest: EditSubtaskRequest = {
+      const subtaskRequest = {
         id: subtask.id,
         title: subtask.title,
         isComplete: subtask.isComplete,
-      };
+      } as EditSubtaskRequest;
 
       editSubtasksRequest.push(subtaskRequest);
     });

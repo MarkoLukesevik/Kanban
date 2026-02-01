@@ -16,7 +16,21 @@ import EditBoardRequest from '../../requests/board-requests/edit-board-request';
 export class BoardService {
   public allBoards: WritableSignal<Board[]> = signal(<Board[]>[]);
   public selectedBoard: WritableSignal<Board | null> = signal<Board | null>(null);
+
   constructor(private apiService: ApiService) {}
+
+  public columns: Signal<Column[]> = computed(() => this.selectedBoard()?.columns ?? []);
+
+  public allTasks: Signal<Task[]> = computed(() =>
+    this.columns().flatMap((column) => column.tasks),
+  );
+
+  public getSubtasksCount(taskId: string): Signal<number> {
+    return computed(() => {
+      const task = this.allTasks().find((t) => t.id === taskId);
+      return task ? task.subtasks.filter((s) => s.isComplete).length : 0;
+    });
+  }
 
   public addTaskToBoard(task: Task): void {
     const currentBoard: Board | null = this.selectedBoard();
@@ -79,6 +93,7 @@ export class BoardService {
     this.selectedBoard.set(updatedBoard);
   }
 
+  // region api
   public getAllBoards(kanbanId: string): Observable<Board[]> {
     return this.apiService.get<Board[]>(`boards/${kanbanId}`);
   }
@@ -98,4 +113,5 @@ export class BoardService {
   public editBoard(request: EditBoardRequest): Observable<Board> {
     return this.apiService.put<Board>('boards', request);
   }
+  // endregion
 }
