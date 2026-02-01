@@ -26,7 +26,6 @@ export class BoardPresenter {
 
   constructor() {}
 
-  public isLoading: Signal<boolean> = computed((): boolean => !this.board());
   public isDark: Signal<boolean> = computed(
     (): boolean => this.themeService.currentTheme() === 'dark',
   );

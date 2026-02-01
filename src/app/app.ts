@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, Signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ThemeService } from './services/theme-service/theme-service';
@@ -34,6 +34,8 @@ export class App implements OnInit {
   private boardService: BoardService = inject(BoardService);
   private toastService: ToastrService = inject(ToastrService);
 
+  public isBoardLoading: WritableSignal<boolean> = signal<boolean>(false);
+
   ngOnInit(): void {
     const user: User | null = this.userService.getLoggedInUser()();
     if (user) this.getKanbanForUser(user.id);
@@ -47,25 +49,39 @@ export class App implements OnInit {
     (): boolean => this.themeService.currentTheme() === 'dark',
   );
 
+  public boardsLength: Signal<number> = computed(
+    (): number => this.boardService.allBoards().length,
+  );
+
   public toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
 
   private getKanbanForUser(userId: string): void {
+    this.isBoardLoading.set(true);
     this.kanbanService.getKanbanForUser(userId).subscribe({
       next: (kanban: Kanban): void => {
         this.kanbanService.kanbanBoard.set(kanban);
         if (kanban.boards.length > 0) {
           this.boardService.allBoards.set(kanban.boards);
           this.boardService.getBoardById(kanban.boards[0].id).subscribe({
-            next: (board: Board): void => this.boardService.selectedBoard.set(board),
-            error: (httpErrorResponse: HttpErrorResponse) =>
-              this.toastService.error(httpErrorResponse.error.error),
+            next: (board: Board): void => {
+              this.boardService.selectedBoard.set(board);
+              this.isBoardLoading.set(false);
+            },
+            error: (httpErrorResponse: HttpErrorResponse) => {
+              this.toastService.error(httpErrorResponse.error.error);
+              this.isBoardLoading.set(false);
+            },
           });
+        } else {
+          this.isBoardLoading.set(false);
         }
       },
-      error: (httpErrorResponse: HttpErrorResponse) =>
-        this.toastService.error(httpErrorResponse.error.error),
+      error: (httpErrorResponse: HttpErrorResponse) => {
+        this.toastService.error(httpErrorResponse.error.error);
+        this.isBoardLoading.set(false);
+      },
     });
   }
 }

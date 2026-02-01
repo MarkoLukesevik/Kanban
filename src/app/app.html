@@ -10,9 +10,17 @@
       </div>
     }
 
-    <div class="kanban-content__board-presenter">
-      <app-board-presenter />
-    </div>
+    @if (isBoardLoading()) {
+      <div class="kanban-content__loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      </div>
+    } @else {
+      @if (boardsLength()) {
+        <div class="kanban-content__board-presenter">
+          <app-board-presenter />
+        </div>
+      }
+    }
 
     @if (!isSidebarVisible) {
       <button class="kanban-content__show-sidebar-button" (click)="toggleSidebar()">

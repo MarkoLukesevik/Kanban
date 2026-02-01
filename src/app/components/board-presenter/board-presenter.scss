@@ -10,16 +10,6 @@
 
   padding: 1.5rem 1rem;
 
-  &__spinner {
-    display: flex;
-    flex: 1 1 auto;
-    align-items: center;
-    justify-content: center;
-
-    color: var(--base-medium-grey-color);
-    font-size: 2rem;
-  }
-
   &__column {
     display: flex;
     flex-direction: column;

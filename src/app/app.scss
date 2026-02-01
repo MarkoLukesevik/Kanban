@@ -32,11 +32,14 @@
       display: none;
     }
 
-    &__spinner {
+    &__loading {
       display: flex;
       flex: 1 1 auto;
       align-items: center;
       justify-content: center;
+
+      color: var(--base-medium-grey-color);
+      font-size: 2rem;
     }
 
     &__board-presenter {
