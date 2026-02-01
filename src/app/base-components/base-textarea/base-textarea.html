@@ -1,4 +1,4 @@
-<div class="base-textarea" [class.base-textarea-dark]="themeService.currentTheme() === 'dark'">
+<div class="base-textarea" [class.base-textarea-dark]="isDark()">
   @if (label) {
     <label class="base-textarea__label">{{ label }}</label>
   }

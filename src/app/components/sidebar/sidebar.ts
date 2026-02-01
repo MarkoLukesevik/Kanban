@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Output, Signal } from '@angular/core';
 
 import { ThemeService } from '../../services/theme-service/theme-service';
 
@@ -14,5 +14,9 @@ import { Theme } from '../theme/theme';
 export class Sidebar {
   @Output() handleHideSidebar: EventEmitter<void> = new EventEmitter();
 
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 }

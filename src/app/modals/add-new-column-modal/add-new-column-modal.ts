@@ -1,16 +1,18 @@
 import { Component, computed, inject, Signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { ModalService } from '../../services/modal-service/modal-service';
+import { BoardService } from '../../services/board-service/board-service';
+import { ThemeService } from '../../services/theme-service/theme-service';
+import { ToastrService } from 'ngx-toastr';
+import { ColumnService } from '../../services/column-service/column-service';
+
 import { BaseModal } from '../../base-components/base-modal/base-modal';
 import { BaseInput } from '../../base-components/base-input/base-input';
-import { BoardService } from '../../services/board-service/board-service';
-import Column from '../../models/column';
-import { ThemeService } from '../../services/theme-service/theme-service';
-import Board from '../../models/board';
-import EditBoardRequest from '../../requests/board-requests/edit-board-request';
+
 import CreateColumnRequest from '../../requests/column-requests/create-column-request';
-import { ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ColumnService } from '../../services/column-service/column-service';
+import Column from '../../models/column';
+import Board from '../../models/board';
 
 @Component({
   selector: 'app-add-new-column-modal',
@@ -35,7 +37,7 @@ export class AddNewColumnModal {
     (): boolean => this.themeService.currentTheme() === 'dark',
   );
 
-  public handleColumnNameChange(columnName: string) {
+  public handleColumnNameChange(columnName: string): void {
     this.columnName = columnName;
   }
 

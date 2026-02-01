@@ -20,7 +20,7 @@ import Board from '../../models/board';
 export class Header {
   @Input() showBorderUnderLogo: boolean = false;
 
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private boardService: BoardService = inject(BoardService);
   private modalService: ModalService = inject(ModalService);
 
@@ -31,6 +31,10 @@ export class Header {
     const board: Board | null = this.boardService.selectedBoard();
     return board?.name ?? '';
   });
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 
   public openSidebarModal(): void {
     this.isSidebarPopupOpen = true;

@@ -1,8 +1,5 @@
 <app-base-modal [disableClose]="true">
-  <div
-    class="login-register-modal"
-    [class.login-register-modal-dark]="themeService.currentTheme() === 'dark'"
-  >
+  <div class="login-register-modal" [class.login-register-modal-dark]="isDark()">
     <h2 class="login-register-modal__title">
       {{ getTextBasedOnActiveView() }}
     </h2>

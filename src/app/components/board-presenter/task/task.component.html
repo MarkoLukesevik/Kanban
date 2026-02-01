@@ -1,8 +1,4 @@
-<div
-  class="task"
-  [class.task-dark]="themeService.currentTheme() === 'dark'"
-  (click)="handleTaskClick()"
->
+<div class="task" [class.task-dark]="isDark()" (click)="handleTaskClick()">
   <p class="task-title">
     {{ task.title }}
   </p>

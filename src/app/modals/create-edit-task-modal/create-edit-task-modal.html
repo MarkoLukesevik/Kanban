@@ -1,8 +1,5 @@
 <app-base-modal>
-  <div
-    class="create-edit-task-modal"
-    [class.create-edit-task-modal-dark]="themeService.currentTheme() === 'dark'"
-  >
+  <div class="create-edit-task-modal" [class.create-edit-task-modal-dark]="isDark()">
     <h2 class="create-edit-task-modal__title">
       {{ getModalTitle() }}
     </h2>
@@ -44,8 +41,8 @@
 
       <button
         class="button button"
-        [class.button-secondary]="themeService.currentTheme() === 'light'"
-        [class.button-secondary-dark-mode]="themeService.currentTheme() === 'dark'"
+        [class.button-secondary]="!isDark()"
+        [class.button-secondary-dark-mode]="isDark()"
         (click)="handleAddNewSubtask()"
       >
         + Add New Subtask

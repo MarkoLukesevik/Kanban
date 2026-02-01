@@ -1,4 +1,4 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,7 @@ import Board from '../../models/board';
   styleUrl: './sidebar-boards.scss',
 })
 export class SidebarBoards {
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private boardService: BoardService = inject(BoardService);
   private toastrService: ToastrService = inject(ToastrService);
 
@@ -23,6 +23,10 @@ export class SidebarBoards {
   private isBoardSpinnerOn: boolean = false;
 
   constructor() {}
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 
   public handleBoardClick(clickedBoard: Board, event: Event): void {
     event.stopPropagation();

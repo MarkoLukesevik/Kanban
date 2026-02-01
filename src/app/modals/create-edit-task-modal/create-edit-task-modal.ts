@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnInit, Signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ThemeService } from '../../services/theme-service/theme-service';
@@ -31,7 +31,7 @@ import CreateTaskRequest from '../../requests/task-requests/create-task-request'
 export class CreateEditTaskModal implements OnInit {
   @Input() task!: Task;
 
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private boardService: BoardService = inject(BoardService);
   private taskService: TaskService = inject(TaskService);
   private modalService: ModalService = inject(ModalService);
@@ -52,6 +52,10 @@ export class CreateEditTaskModal implements OnInit {
       this.isEditMode = true;
     } else this.initializeNewTask();
   }
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 
   private initializeNewTask(): void {
     this.task = {} as Task;

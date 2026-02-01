@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 
 import { ThemeService } from '../../services/theme-service/theme-service';
 
@@ -14,5 +14,9 @@ import { SidebarBoards } from '../../components/sidebar-boards/sidebar-boards';
   styleUrl: './sidebar-popup.scss',
 })
 export class SidebarPopup {
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 }

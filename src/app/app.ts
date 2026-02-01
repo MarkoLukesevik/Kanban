@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal } from '@angular/core';
 import { Header } from './components/header/header';
 import { Sidebar } from './components/sidebar/sidebar';
 import { ThemeService } from './services/theme-service/theme-service';
@@ -23,7 +23,7 @@ import { BoardPresenter } from './components/board-presenter/board-presenter';
 export class App implements OnInit {
   public isSidebarVisible: boolean = true;
 
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private userService: UserService = inject(UserService);
   private modalService: ModalService = inject(ModalService);
   private kanbanService: KanbanService = inject(KanbanService);
@@ -38,6 +38,10 @@ export class App implements OnInit {
         .open(RegisterLoginModal)
         .subscribe((user: User) => this.getKanbanForUser(user.id));
   }
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 
   public toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;

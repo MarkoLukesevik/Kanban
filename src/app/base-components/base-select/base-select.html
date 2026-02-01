@@ -1,4 +1,4 @@
-<div class="base-select" [class.base-select-dark]="themeService.currentTheme() === 'dark'">
+<div class="base-select" [class.base-select-dark]="isDark()">
   @if (label) {
     <label class="base-select__label">{{ label }}</label>
   }

@@ -1,10 +1,10 @@
-<div class="header" [class.header-dark]="themeService.currentTheme() === 'dark'">
+<div class="header" [class.header-dark]="isDark()">
   <div class="header-logo" [class.header-logo__border]="showBorderUnderLogo">
     <img src="images/kanban-logo.svg" alt="" />
-    @if (themeService.currentTheme() === 'light') {
-      <img class="header-logo__text" src="images/kanban-text-logo.svg" alt="" />
-    } @else {
+    @if (isDark()) {
       <img class="header-logo__text" src="images/kanban-text-logo-dark.svg" alt="" />
+    } @else {
+      <img class="header-logo__text" src="images/kanban-text-logo.svg" alt="" />
     }
   </div>
 

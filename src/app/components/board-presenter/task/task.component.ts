@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, Signal } from '@angular/core';
+import { Component, computed, inject, Input, OnInit, Signal } from '@angular/core';
 
 import { ModalService } from '../../../services/modal-service/modal-service';
 import { ThemeService } from '../../../services/theme-service/theme-service';
@@ -16,7 +16,7 @@ import { BoardService } from '../../../services/board-service/board-service';
 export class TaskComponent implements OnInit {
   @Input({ required: true }) task!: Task;
 
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private modalService: ModalService = inject(ModalService);
   private boardService: BoardService = inject(BoardService);
 
@@ -25,6 +25,10 @@ export class TaskComponent implements OnInit {
   ngOnInit(): void {
     this.subtasksCount = this.boardService.getSubtasksCount(this.task.id);
   }
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 
   public handleTaskClick(): void {
     this.modalService.open(TaskInfoModal, { taskId: this.task.id });

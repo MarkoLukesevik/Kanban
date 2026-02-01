@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Input, Output, Signal } from '@angular/core';
 
 import { ClickOutsideDirective } from '../../directives/click-outside-directive/click-outside-directive';
 
@@ -11,16 +11,20 @@ import { ThemeService } from '../../services/theme-service/theme-service';
   styleUrl: './base-select.scss',
 })
 export class BaseSelect {
-  public themeService: ThemeService = inject(ThemeService);
-
   @Input() label: string = '';
   @Input() options: string[] = [];
   @Input() selectedOption: string = '';
   @Output() handleChange: EventEmitter<string> = new EventEmitter();
 
+  private themeService: ThemeService = inject(ThemeService);
+
   public isOpen: boolean = false;
 
   constructor() {}
+
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
 
   public toggleDropdown(): void {
     this.isOpen = !this.isOpen;

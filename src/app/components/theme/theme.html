@@ -1,8 +1,8 @@
-<div class="theme" [class.theme-dark]="themeService.currentTheme() === 'dark'">
+<div class="theme" [class.theme-dark]="isDark()">
   <img src="images/light-theme.svg" alt="" />
   <div
     class="theme-toggle"
-    [class.theme-toggle__active]="themeService.currentTheme() === 'dark'"
+    [class.theme-toggle__active]="isDark()"
     (click)="themeService.toggleTheme()"
   >
     <div class="theme-toggle__circle"></div>

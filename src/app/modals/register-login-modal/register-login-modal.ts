@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +20,7 @@ import RegisterUserRequest from '../../requests/user-requests/register-user-requ
   styleUrl: './register-login-modal.scss',
 })
 export class RegisterLoginModal {
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private userService: UserService = inject(UserService);
   private modalService: ModalService = inject(ModalService);
   private toastService: ToastrService = inject(ToastrService);
@@ -36,18 +36,22 @@ export class RegisterLoginModal {
   public emailError: string = '';
   public passwordError: string = '';
 
+  public isDark: Signal<boolean> = computed(
+    (): boolean => this.themeService.currentTheme() === 'dark',
+  );
+
   // region view actions and formatters
   public getTextBasedOnActiveView(): string {
     return this.activeView === 'login' ? 'Login' : 'Register';
   }
 
-  public toggleActiveView() {
+  public toggleActiveView(): void {
     this.resetUser();
     if (this.activeView === 'login') this.activeView = 'register';
     else this.activeView = 'login';
   }
 
-  public getActiveViewToggleButtonText() {
+  public getActiveViewToggleButtonText(): string {
     if (this.activeView === 'register') return 'Already have an account? Click here to login.';
     return "Don't have an account? Click here to register.";
   }
@@ -58,7 +62,7 @@ export class RegisterLoginModal {
     return !this.name || !this.lastName || !this.username || !this.email || !this.password;
   }
 
-  public handleFooterButtonClick() {
+  public handleFooterButtonClick(): void {
     if (this.activeView === 'register') this.handleRegister();
     else this.handleLogin();
   }

@@ -1,4 +1,4 @@
-<div class="base-input" [class.base-input-dark]="themeService.currentTheme() === 'dark'">
+<div class="base-input" [class.base-input-dark]="isDark()">
   @if (label) {
     <label class="base-input__label">{{ label }}</label>
   }

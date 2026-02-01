@@ -1,4 +1,4 @@
-<div class="sidebar-boards" [class.sidebar-boards-dark]="themeService.currentTheme() === 'dark'">
+<div class="sidebar-boards" [class.sidebar-boards-dark]="isDark()">
   <p class="sidebar-boards__title">All boards ({{ boards().length }})</p>
 
   <div class="sidebar-boards__list">
