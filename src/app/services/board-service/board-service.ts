@@ -9,6 +9,7 @@ import Column from '../../models/column';
 
 import CreateBoardRequest from '../../requests/board-requests/create-board-request';
 import EditBoardRequest from '../../requests/board-requests/edit-board-request';
+import Subtask from '../../models/subtask';
 
 @Injectable({
   providedIn: 'root',
@@ -20,17 +21,17 @@ export class BoardService {
   constructor(private apiService: ApiService) {}
 
   public selectedBoardColumns: Signal<Column[]> = computed(
-    () => this.selectedBoard()?.columns ?? [],
+    (): Column[] => this.selectedBoard()?.columns ?? [],
   );
 
-  public selectedBoardTasks: Signal<Task[]> = computed(() =>
-    this.selectedBoardColumns().flatMap((column) => column.tasks),
+  public selectedBoardTasks: Signal<Task[]> = computed((): Task[] =>
+    this.selectedBoardColumns().flatMap((column: Column): Task[] => column.tasks),
   );
 
   public getSubtasksCount(taskId: string): Signal<number> {
-    return computed(() => {
-      const task = this.selectedBoardTasks().find((t) => t.id === taskId);
-      return task ? task.subtasks.filter((s) => s.isComplete).length : 0;
+    return computed((): number => {
+      const task: Task | undefined = this.selectedBoardTasks().find((t: Task) => t.id === taskId);
+      return task ? task.subtasks.filter((s: Subtask) => s.isComplete).length : 0;
     });
   }
 
@@ -52,8 +53,9 @@ export class BoardService {
 
     const updatedBoard: Board = {
       ...currentBoard,
-      columns: currentBoard.columns.map((column: Column) =>
-        column.id === task.columnId ? { ...column, tasks: [...column.tasks, task] } : column,
+      columns: currentBoard.columns.map(
+        (column: Column): Column =>
+          column.id === task.columnId ? { ...column, tasks: [...column.tasks, task] } : column,
       ),
     };
 
@@ -67,7 +69,9 @@ export class BoardService {
     const updatedBoard: Board = {
       ...currentBoard,
       columns: currentBoard.columns.map((column: Column) => {
-        const filteredTasks = column.tasks.filter((task: Task) => task.id !== updatedTask.id);
+        const filteredTasks: Task[] = column.tasks.filter(
+          (task: Task) => task.id !== updatedTask.id,
+        );
 
         if (column.id === updatedTask.columnId) {
           return {

@@ -9,22 +9,28 @@ import {
   Signal,
   WritableSignal,
 } from '@angular/core';
-import Task from '../../models/task';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import { ClickOutsideDirective } from '../../directives/click-outside-directive/click-outside-directive';
+
 import { ThemeService } from '../../services/theme-service/theme-service';
 import { TaskService } from '../../services/task-service/task-service';
 import { ModalService } from '../../services/modal-service/modal-service';
 import { ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ClickOutsideDirective } from '../../directives/click-outside-directive/click-outside-directive';
+import { BoardService } from '../../services/board-service/board-service';
+
 import { BaseModal } from '../../base-components/base-modal/base-modal';
+import { BaseCheckbox } from '../../base-components/base-checkbox/base-checkbox';
+import { BaseSelect } from '../../base-components/base-select/base-select';
+
 import { CreateEditTaskModal } from '../create-edit-task-modal/create-edit-task-modal';
 import { DeleteTaskModal } from '../delete-task-modal/delete-task-modal';
-import { BaseCheckbox } from '../../base-components/base-checkbox/base-checkbox';
+
+import Task from '../../models/task';
 import Subtask from '../../models/subtask';
-import { BaseSelect } from '../../base-components/base-select/base-select';
 import Board from '../../models/board';
 import Column from '../../models/column';
-import { BoardService } from '../../services/board-service/board-service';
+
 import EditSubtaskRequest from '../../requests/subtask-requests/edit-subtask-request';
 import EditTaskRequest from '../../requests/task-requests/edit-task-request';
 

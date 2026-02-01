@@ -1,18 +1,22 @@
 import { Component, computed, inject, OnInit, Signal } from '@angular/core';
-import { Header } from './components/header/header';
-import { Sidebar } from './components/sidebar/sidebar';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { ThemeService } from './services/theme-service/theme-service';
 import { UserService } from './services/user-service/user-service';
 import { ModalService } from './services/modal-service/modal-service';
 import { ToastrService } from 'ngx-toastr';
 import { KanbanService } from './services/kanban-service/kanban-service';
 import { BoardService } from './services/board-service/board-service';
+
+import { Header } from './components/header/header';
+import { Sidebar } from './components/sidebar/sidebar';
+import { BoardPresenter } from './components/board-presenter/board-presenter';
+
+import { RegisterLoginModal } from './modals/register-login-modal/register-login-modal';
+
 import User from './models/user';
 import Kanban from './models/kanban';
-import { HttpErrorResponse } from '@angular/common/http';
 import Board from './models/board';
-import { RegisterLoginModal } from './modals/register-login-modal/register-login-modal';
-import { BoardPresenter } from './components/board-presenter/board-presenter';
 
 @Component({
   selector: 'app-root',

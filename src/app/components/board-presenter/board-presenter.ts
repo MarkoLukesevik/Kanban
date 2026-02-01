@@ -5,10 +5,10 @@ import { ModalService } from '../../services/modal-service/modal-service';
 import { BoardService } from '../../services/board-service/board-service';
 
 import { TaskComponent } from './task/task.component';
+import { AddNewColumnModal } from '../../modals/add-new-column-modal/add-new-column-modal';
 
 import Column from '../../models/column';
 import Board from '../../models/board';
-import { AddNewColumnModal } from '../../modals/add-new-column-modal/add-new-column-modal';
 
 @Component({
   selector: 'app-board-presenter',

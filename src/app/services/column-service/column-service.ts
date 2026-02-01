@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { ApiService } from '../api-service/api-service';
-import CreateColumnRequest from '../../requests/column-requests/create-column-request';
 import { Observable } from 'rxjs';
 
+import { ApiService } from '../api-service/api-service';
+
 import Column from '../../models/column';
+import CreateColumnRequest from '../../requests/column-requests/create-column-request';
 
 @Injectable({
   providedIn: 'root',

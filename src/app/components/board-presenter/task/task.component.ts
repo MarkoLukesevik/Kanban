@@ -2,10 +2,11 @@ import { Component, computed, inject, Input, OnInit, Signal } from '@angular/cor
 
 import { ModalService } from '../../../services/modal-service/modal-service';
 import { ThemeService } from '../../../services/theme-service/theme-service';
+import { BoardService } from '../../../services/board-service/board-service';
+
+import { TaskInfoModal } from '../../../modals/task-info-modal/task-info-modal';
 
 import Task from '../../../models/task';
-import { TaskInfoModal } from '../../../modals/task-info-modal/task-info-modal';
-import { BoardService } from '../../../services/board-service/board-service';
 
 @Component({
   selector: 'app-task',

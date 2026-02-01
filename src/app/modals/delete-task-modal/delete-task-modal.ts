@@ -1,12 +1,15 @@
 import { Component, computed, inject, Input, Signal } from '@angular/core';
-import { BaseModal } from '../../base-components/base-modal/base-modal';
-import Task from '../../models/task';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { ThemeService } from '../../services/theme-service/theme-service';
 import { BoardService } from '../../services/board-service/board-service';
 import { TaskService } from '../../services/task-service/task-service';
 import { ModalService } from '../../services/modal-service/modal-service';
 import { ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse } from '@angular/common/http';
+
+import { BaseModal } from '../../base-components/base-modal/base-modal';
+
+import Task from '../../models/task';
 
 @Component({
   selector: 'app-delete-task-modal',
