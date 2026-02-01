@@ -19,7 +19,7 @@ export class DeleteTaskModal {
 
   public isDeleteButtonSpinnerOn: boolean = false;
 
-  public themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   private boardService: BoardService = inject(BoardService);
   private taskService: TaskService = inject(TaskService);
   private modalService: ModalService = inject(ModalService);

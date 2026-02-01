@@ -1,0 +1,23 @@
+<app-base-modal>
+  <div class="add-new-column-modal" [class.add-new-column-modal__dark]="isDark()">
+    @if (selectedBoard) {
+      <h1 class="add-new-column-modal__title">Add New Column to {{ selectedBoard.name }}</h1>
+    }
+
+    <app-base-input
+      [label]="'Column'"
+      [placeholder]="'Column Name'"
+      [value]="columnName"
+      [error]="columnNameError"
+      (handleInputChange)="handleColumnNameChange($event)"
+    />
+
+    <button (click)="handleAddColumnClick()" [disabled]="isAddColumnButtonSpinnerOn">
+      @if (isAddColumnButtonSpinnerOn) {
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      } @else {
+        Add New Column
+      }
+    </button>
+  </div>
+</app-base-modal>

@@ -1,0 +1,38 @@
+.add-new-column-modal {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  row-gap: 1.5rem;
+
+  width: 90%;
+  max-width: 480px;
+
+  background-color: var(--base-white-color);
+  color: var(--base-medium-grey-color);
+  border-radius: 6px;
+  padding: 2rem;
+
+  &__dark {
+    background-color: var(--base-dark-grey-color);
+    color: var(--base-white-color);
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  & button {
+    border: none;
+    border-radius: 1.25rem;
+    padding: 0.5rem;
+    background-color: var(--base-purple-color);
+    color: var(--base-white-color);
+
+    font-size: 0.875rem;
+    line-height: 23px;
+    font-weight: 600;
+
+    cursor: pointer;
+  }
+}

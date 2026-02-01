@@ -1,7 +1,7 @@
-import CreateColumnRequest from '../column-requests/create-column-request';
+import EditColumnRequest from '../column-requests/edit-column-request';
 
 export default interface EditBoardRequest {
   id: string;
   name: string;
-  columns: CreateColumnRequest[];
+  columns: EditColumnRequest[];
 }

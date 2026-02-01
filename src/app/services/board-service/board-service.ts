@@ -19,17 +19,31 @@ export class BoardService {
 
   constructor(private apiService: ApiService) {}
 
-  public columns: Signal<Column[]> = computed(() => this.selectedBoard()?.columns ?? []);
+  public selectedBoardColumns: Signal<Column[]> = computed(
+    () => this.selectedBoard()?.columns ?? [],
+  );
 
-  public allTasks: Signal<Task[]> = computed(() =>
-    this.columns().flatMap((column) => column.tasks),
+  public selectedBoardTasks: Signal<Task[]> = computed(() =>
+    this.selectedBoardColumns().flatMap((column) => column.tasks),
   );
 
   public getSubtasksCount(taskId: string): Signal<number> {
     return computed(() => {
-      const task = this.allTasks().find((t) => t.id === taskId);
+      const task = this.selectedBoardTasks().find((t) => t.id === taskId);
       return task ? task.subtasks.filter((s) => s.isComplete).length : 0;
     });
+  }
+
+  public addColumnToSelectedBoard(column: Column): void {
+    const currentBoard: Board | null = this.selectedBoard();
+    if (!currentBoard) return;
+
+    const updatedBoard: Board = {
+      ...currentBoard,
+      columns: [...currentBoard.columns, column],
+    };
+
+    this.selectedBoard.set(updatedBoard);
   }
 
   public addTaskToBoard(task: Task): void {

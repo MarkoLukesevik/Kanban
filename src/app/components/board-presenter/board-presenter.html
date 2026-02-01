@@ -1,4 +1,4 @@
-<div class="board-presenter" [class.board-presenter-dark]="themeService.currentTheme() === 'dark'">
+<div class="board-presenter" [class.board-presenter-dark]="isDark()">
   @if (isLoading()) {
     <div class="board-presenter__spinner">
       <i class="fa-solid fa-spinner fa-spin"></i>
@@ -7,7 +7,9 @@
     @if (!columns().length) {
       <div class="board-presenter__empty">
         <p>This board is empty. Create a new column to get started</p>
-        <button class="button button-primary">+ Add New Column</button>
+        <button class="button button-primary" (click)="handleAddNewColumnClick()">
+          + Add New Column
+        </button>
       </div>
     } @else {
       @for (column of columns(); track column.id) {
@@ -21,6 +23,14 @@
           </div>
         </div>
       }
+      <div
+        class="board-presenter__column board-presenter__column-add"
+        [class.board-presenter__column-add__dark]="isDark()"
+      >
+        <button class="board-presenter__column-add__button" (click)="handleAddNewColumnClick()">
+          + New Column
+        </button>
+      </div>
     }
   }
 </div>
