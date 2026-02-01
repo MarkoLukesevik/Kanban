@@ -1,3 +1,57 @@
 <app-base-modal>
-  <div class="create-edit-board-modal"></div>
+  <div class="create-edit-board-modal" [class.create-edit-board-modal-dark]="isDark()">
+    <h2 class="create-edit-board-modal__title">
+      {{ getModalTitle() }}
+    </h2>
+
+    <app-base-input
+      [label]="'Title'"
+      [placeholder]="'Title'"
+      [value]="currentBoard.name"
+      [error]="boardNameError"
+      (handleInputChange)="currentBoard.name = $event"
+    />
+
+    <div class="create-edit-board-modal__columns">
+      <p class="create-edit-board-modal__columns-title">Columns</p>
+
+      @for (column of currentBoard.columns; let i = $index; track i) {
+        <div class="create-edit-board-modal__columns-item">
+          <app-base-input
+            [placeholder]="'e.g. Todo'"
+            [value]="column.name"
+            [error]="columnErrors[i]"
+            (handleInputChange)="column.name = $event"
+          />
+          <div
+            class="create-edit-board-modal__columns-item__delete-icon"
+            (click)="handleColumnRemove(i)"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+      }
+
+      <button
+        class="button button"
+        [class.button-secondary]="!isDark()"
+        [class.button-secondary-dark-mode]="isDark()"
+        (click)="handleAddNewColumn()"
+      >
+        + Add New Column
+      </button>
+    </div>
+
+    <button
+      class="button button-primary create-edit-board-modal__save-button"
+      [disabled]="isSaveButtonSpinnerOn"
+      (click)="handleSaveClick()"
+    >
+      @if (isSaveButtonSpinnerOn) {
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      } @else {
+        {{ getSaveButtonName() }}
+      }
+    </button>
+  </div>
 </app-base-modal>

@@ -8,6 +8,7 @@ import { ModalService } from '../../services/modal-service/modal-service';
 
 import { SidebarPopup } from '../../modals/sidebar-popup/sidebar-popup';
 import { CreateEditTaskModal } from '../../modals/create-edit-task-modal/create-edit-task-modal';
+import { CreateEditBoardModal } from '../../modals/create-edit-board-modal/create-edit-board-modal';
 
 import Board from '../../models/board';
 
@@ -56,7 +57,9 @@ export class Header {
     this.modalService.open(CreateEditTaskModal);
   }
 
-  public handleAddNewBoardClick(): void {}
+  public handleEditBoardClick(): void {
+    this.modalService.open(CreateEditBoardModal, { board: this.boardService.selectedBoard() });
+  }
 
   public handleDeleteBoardClick(): void {}
 }

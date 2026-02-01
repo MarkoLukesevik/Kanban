@@ -50,6 +50,7 @@ export class CreateEditTaskModal implements OnInit {
 
     if (this.task) {
       this.isEditMode = true;
+      this.subtaskErrors = this.task.subtasks.map((): string => '');
     } else this.initializeNewTask();
   }
 
@@ -84,6 +85,7 @@ export class CreateEditTaskModal implements OnInit {
 
   public handleSubtaskRemove(index: number): void {
     this.task.subtasks.splice(index, 1);
+    this.subtaskErrors.splice(index, 1);
   }
 
   public handleAddNewSubtask(): void {
@@ -94,6 +96,7 @@ export class CreateEditTaskModal implements OnInit {
     } as Subtask;
 
     this.task.subtasks.push(subtask);
+    this.subtaskErrors.push('');
   }
 
   public handleSaveClick(): void {

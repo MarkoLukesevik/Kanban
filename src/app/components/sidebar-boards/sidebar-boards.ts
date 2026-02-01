@@ -4,6 +4,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { ThemeService } from '../../services/theme-service/theme-service';
 import { BoardService } from '../../services/board-service/board-service';
+import { ModalService } from '../../services/modal-service/modal-service';
+
+import { CreateEditBoardModal } from '../../modals/create-edit-board-modal/create-edit-board-modal';
 
 import Board from '../../models/board';
 
@@ -17,6 +20,7 @@ export class SidebarBoards {
   private themeService: ThemeService = inject(ThemeService);
   private boardService: BoardService = inject(BoardService);
   private toastrService: ToastrService = inject(ToastrService);
+  private modalService: ModalService = inject(ModalService);
 
   public boards: Signal<Board[]> = this.boardService.allBoards;
   public selectedBoard: Signal<Board | null> = this.boardService.selectedBoard;
@@ -44,5 +48,9 @@ export class SidebarBoards {
         this.isBoardSpinnerOn = false;
       },
     });
+  }
+
+  public handleCreateNewBoardClick(): void {
+    this.modalService.open(CreateEditBoardModal);
   }
 }
