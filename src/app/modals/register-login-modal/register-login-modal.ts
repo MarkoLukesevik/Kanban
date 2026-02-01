@@ -108,8 +108,10 @@ export class RegisterLoginModal {
         this.userService.setLoggedInUser(user);
         this.modalService.close(user);
       },
-      error: (httpErrorResponse: HttpErrorResponse) =>
-        this.toastService.error(httpErrorResponse.error.error),
+      error: (httpErrorResponse: HttpErrorResponse) => {
+        console.log(httpErrorResponse.error.error);
+        this.toastService.error(httpErrorResponse.error.error);
+      },
     });
   }
   // endregion
