@@ -11,6 +11,7 @@ import { CreateEditTaskModal } from '../../modals/create-edit-task-modal/create-
 import { CreateEditBoardModal } from '../../modals/create-edit-board-modal/create-edit-board-modal';
 
 import Board from '../../models/board';
+import { DeleteBoardModal } from '../../modals/delete-board-modal/delete-board-modal';
 
 @Component({
   selector: 'app-header',
@@ -61,5 +62,7 @@ export class Header {
     this.modalService.open(CreateEditBoardModal, { board: this.boardService.selectedBoard() });
   }
 
-  public handleDeleteBoardClick(): void {}
+  public handleDeleteBoardClick(): void {
+    this.modalService.open(DeleteBoardModal, { board: this.boardService.selectedBoard() });
+  }
 }
