@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  baseurl: string = 'http://localhost:5229/';
+  baseurl: string = 'https://kanbanserver-production-a212.up.railway.app/';
   constructor(private http: HttpClient) {}
 
   get<T>(url: string): Observable<T> {
