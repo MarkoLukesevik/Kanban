@@ -56,6 +56,8 @@ export class App implements OnInit {
   }
 
   private getKanbanForUser(userId: string): void {
+    if (this.kanbanService.kanbanBoard()) return;
+
     this.isBoardLoading.set(true);
     this.kanbanService.getKanbanForUser(userId).subscribe({
       next: (kanban: Kanban): void => {
