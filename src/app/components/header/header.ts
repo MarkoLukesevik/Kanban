@@ -31,6 +31,10 @@ export class Header {
   public isSidebarPopupOpen: boolean = false;
   public isMoreActionsPopupOpen: boolean = false;
 
+  public readonly selectedBoard: Signal<Board | null> = computed((): Board | null => {
+    return this.boardService.selectedBoard();
+  });
+
   public readonly selectedBoardName: Signal<string> = computed((): string => {
     const board: Board | null = this.boardService.selectedBoard();
     return board?.name ?? '';

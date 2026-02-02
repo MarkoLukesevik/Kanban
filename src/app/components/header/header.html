@@ -21,37 +21,39 @@
     </div>
 
     <div class="header-content__actions">
-      <div class="header-content__actions-desktop__button">
-        <app-base-button [text]="'+ Add new task'" (handleButtonClick)="handleAddNewTask()" />
-      </div>
-      <div class="header-content__actions-mobile__button">
-        <app-base-button [text]="'+'" (handleButtonClick)="handleAddNewTask()" />
-      </div>
+      @if (selectedBoard()) {
+        <div class="header-content__actions-desktop__button">
+          <app-base-button [text]="'+ Add new task'" (handleButtonClick)="handleAddNewTask()" />
+        </div>
+        <div class="header-content__actions-mobile__button">
+          <app-base-button [text]="'+'" (handleButtonClick)="handleAddNewTask()" />
+        </div>
 
-      <div
-        class="header-content__actions-more"
-        (click)="toggleActionsPopup()"
-        (appClickOutside)="closeActionsPopup()"
-      >
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+        <div
+          class="header-content__actions-more"
+          (click)="toggleActionsPopup()"
+          (appClickOutside)="closeActionsPopup()"
+        >
+          <i class="fa-solid fa-ellipsis-vertical"></i>
 
-        @if (isMoreActionsPopupOpen) {
-          <div class="header-content__actions-more-popup">
-            <button
-              class="header-content__actions-more-popup__edit-button"
-              (click)="handleEditBoardClick()"
-            >
-              Edit Board
-            </button>
-            <button
-              class="header-content__actions-more-popup__delete-button"
-              (click)="handleDeleteBoardClick()"
-            >
-              Delete Board
-            </button>
-          </div>
-        }
-      </div>
+          @if (isMoreActionsPopupOpen) {
+            <div class="header-content__actions-more-popup">
+              <button
+                class="header-content__actions-more-popup__edit-button"
+                (click)="handleEditBoardClick()"
+              >
+                Edit Board
+              </button>
+              <button
+                class="header-content__actions-more-popup__delete-button"
+                (click)="handleDeleteBoardClick()"
+              >
+                Delete Board
+              </button>
+            </div>
+          }
+        </div>
+      }
     </div>
   </div>
 </div>
