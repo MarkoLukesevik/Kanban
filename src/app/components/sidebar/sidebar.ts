@@ -2,6 +2,8 @@ import { Component, computed, EventEmitter, inject, Output, Signal } from '@angu
 
 import { ThemeService } from '../../services/theme-service/theme-service';
 import { UserService } from '../../services/user-service/user-service';
+import { BoardService } from '../../services/board-service/board-service';
+import { KanbanService } from '../../services/kanban-service/kanban-service';
 
 import { SidebarBoards } from '../sidebar-boards/sidebar-boards';
 import { Theme } from '../theme/theme';
@@ -19,6 +21,8 @@ export class Sidebar {
 
   private themeService: ThemeService = inject(ThemeService);
   private userService: UserService = inject(UserService);
+  private boardService: BoardService = inject(BoardService);
+  private kanbanService: KanbanService = inject(KanbanService);
 
   public isDark: Signal<boolean> = computed(
     (): boolean => this.themeService.currentTheme() === 'dark',
@@ -30,5 +34,8 @@ export class Sidebar {
 
   public handleLogoutClick(): void {
     this.userService.logout();
+    this.kanbanService.kanbanBoard.set(null);
+    this.boardService.allBoards.set([]);
+    this.boardService.selectedBoard.set(null);
   }
 }
