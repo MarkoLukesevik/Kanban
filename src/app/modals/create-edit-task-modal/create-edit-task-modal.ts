@@ -137,9 +137,9 @@ export class CreateEditTaskModal implements OnInit {
       createSubtasksRequest.push(createSubtaskRequest);
     });
 
-    const taskColumn = this.boardService
+    const taskColumn: Column | undefined = this.boardService
       .selectedBoard()
-      ?.columns.find((c) => c.name === this.task.status);
+      ?.columns.find((c: Column) => c.name === this.task.status);
 
     const createTaskRequest: CreateTaskRequest = {
       boardId: boardId,

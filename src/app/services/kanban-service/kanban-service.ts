@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from '../api-service/api-service';
@@ -9,7 +9,7 @@ import Kanban from '../../models/kanban';
   providedIn: 'root',
 })
 export class KanbanService {
-  public kanbanBoard = signal<Kanban | null>(null);
+  public kanbanBoard: WritableSignal<Kanban | null> = signal<Kanban | null>(null);
 
   constructor(private apiService: ApiService) {}
 

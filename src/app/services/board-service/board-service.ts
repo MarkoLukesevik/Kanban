@@ -55,7 +55,9 @@ export class BoardService {
       ...currentBoard,
       columns: currentBoard.columns.map(
         (column: Column): Column =>
-          column.id === task.columnId ? { ...column, tasks: [...column.tasks, task] } : column,
+          column.id === task.columnId
+            ? { ...column, tasks: [...column.tasks, task].sort((a, b) => a.order - b.order) }
+            : column,
       ),
     };
 
@@ -112,10 +114,6 @@ export class BoardService {
   }
 
   // region api
-  public getAllBoards(kanbanId: string): Observable<Board[]> {
-    return this.apiService.get<Board[]>(`boards/${kanbanId}`);
-  }
-
   public getBoardById(boardId: string): Observable<Board> {
     return this.apiService.get<Board>(`boards?id=${boardId}`);
   }
