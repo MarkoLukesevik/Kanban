@@ -56,15 +56,13 @@
       align-items: center;
       column-gap: 1rem;
 
-      &-button {
-        display: flex;
-        align-items: center;
+      &-mobile__button {
+        width: 48px;
+        height: 32px;
+      }
 
-        padding: 0.625rem 1.125rem;
-
-        & span {
-          display: none;
-        }
+      &-desktop__button {
+        display: none;
       }
 
       &-more {
@@ -149,14 +147,12 @@
       }
 
       &__actions {
-        &-button {
-          & span {
-            display: inline;
-          }
+        &-desktop__button {
+          display: flex;
+        }
 
-          &__icon {
-            display: none;
-          }
+        &-mobile__button {
+          display: none;
         }
 
         &-more-popup {

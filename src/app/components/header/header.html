@@ -21,7 +21,12 @@
     </div>
 
     <div class="header-content__actions">
-      <app-base-button [text]="'+ Add new task'" (handleButtonClick)="handleAddNewTask()" />
+      <div class="header-content__actions-desktop__button">
+        <app-base-button [text]="'+ Add new task'" (handleButtonClick)="handleAddNewTask()" />
+      </div>
+      <div class="header-content__actions-mobile__button">
+        <app-base-button [text]="'+'" (handleButtonClick)="handleAddNewTask()" />
+      </div>
 
       <div
         class="header-content__actions-more"
