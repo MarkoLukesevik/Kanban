@@ -76,13 +76,13 @@ export class BoardService {
         if (column.id === updatedTask.columnId) {
           return {
             ...column,
-            tasks: [...filteredTasks, updatedTask],
+            tasks: [...filteredTasks, updatedTask].sort((a, b) => a.order - b.order),
           };
         }
 
         return {
           ...column,
-          tasks: filteredTasks,
+          tasks: filteredTasks.sort((a, b) => a.order - b.order),
         };
       }),
     };

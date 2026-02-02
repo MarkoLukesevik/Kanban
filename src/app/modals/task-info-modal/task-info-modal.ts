@@ -91,6 +91,7 @@ export class TaskInfoModal implements OnInit, OnDestroy {
       description: this.task.description,
       status: this.task.status,
       subtasks: editSubtasksRequest,
+      order: this.task.order,
     };
 
     this.taskService.editTask(editTaskRequest).subscribe({

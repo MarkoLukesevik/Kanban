@@ -9,4 +9,5 @@ export default interface Task {
   subtasks: Subtask[];
   createdAt: Date;
   lastModifiedAt: Date;
+  order: number;
 }

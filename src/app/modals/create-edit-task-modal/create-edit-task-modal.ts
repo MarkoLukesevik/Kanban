@@ -17,8 +17,6 @@ import Subtask from '../../models/subtask';
 import Board from '../../models/board';
 import Column from '../../models/column';
 
-import EditSubtaskRequest from '../../requests/subtask-requests/edit-subtask-request';
-import EditTaskRequest from '../../requests/task-requests/edit-task-request';
 import CreateSubtaskRequest from '../../requests/subtask-requests/create-subtask-request';
 import CreateTaskRequest from '../../requests/task-requests/create-task-request';
 
@@ -139,12 +137,17 @@ export class CreateEditTaskModal implements OnInit {
       createSubtasksRequest.push(createSubtaskRequest);
     });
 
+    const taskColumn = this.boardService
+      .selectedBoard()
+      ?.columns.find((c) => c.name === this.task.status);
+
     const createTaskRequest: CreateTaskRequest = {
       boardId: boardId,
       title: this.task.title,
       description: this.task.description,
       status: this.task.status,
       subtasks: createSubtasksRequest,
+      order: taskColumn ? taskColumn.tasks.length : 0,
     };
 
     this.taskService.createTask(createTaskRequest).subscribe({

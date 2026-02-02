@@ -6,4 +6,5 @@ export default interface CreateTaskRequest {
   description: string;
   status: string;
   subtasks: CreateSubtaskRequest[];
+  order: number;
 }

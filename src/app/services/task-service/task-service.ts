@@ -28,6 +28,7 @@ export class TaskService {
       description: task.description,
       status: task.status,
       subtasks: editSubtasks,
+      order: task.order,
     };
 
     return this.editTask(request);

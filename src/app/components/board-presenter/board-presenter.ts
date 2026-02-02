@@ -80,6 +80,11 @@ export class BoardPresenter {
 
     task.columnId = column.id;
     task.status = column.name;
+    task.order = event.currentIndex;
+
+    column.tasks.forEach((t, index) => {
+      t.order = index;
+    });
 
     this.taskService.updateTask(task).subscribe({
       next: (updatedTask: Task) => {

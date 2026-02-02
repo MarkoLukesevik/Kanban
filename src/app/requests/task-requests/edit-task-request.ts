@@ -6,4 +6,5 @@ export default interface EditTaskRequest {
   description: string;
   status: string;
   subtasks: EditSubtaskRequest[];
+  order: number;
 }
