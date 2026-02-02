@@ -1,0 +1,15 @@
+<button
+  class="base-button"
+  [class.base-button__dark]="isDark()"
+  [class.base-button__primary]="type === 'primary'"
+  [class.base-button__secondary]="type === 'secondary'"
+  [class.base-button__danger]="type === 'danger'"
+  [disabled]="isDisabled"
+  (click)="handleButtonClick.emit()"
+>
+  @if (isSpinnerOn) {
+    <i class="fa-solid fa-spinner fa-spin"></i>
+  } @else {
+    {{ text }}
+  }
+</button>

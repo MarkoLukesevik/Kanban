@@ -6,16 +6,18 @@ import { ThemeService } from '../../services/theme-service/theme-service';
 import { BoardService } from '../../services/board-service/board-service';
 import { ModalService } from '../../services/modal-service/modal-service';
 
+import { BaseButton } from '../../base-components/base-button/base-button';
+
 import { SidebarPopup } from '../../modals/sidebar-popup/sidebar-popup';
 import { CreateEditTaskModal } from '../../modals/create-edit-task-modal/create-edit-task-modal';
 import { CreateEditBoardModal } from '../../modals/create-edit-board-modal/create-edit-board-modal';
+import { DeleteBoardModal } from '../../modals/delete-board-modal/delete-board-modal';
 
 import Board from '../../models/board';
-import { DeleteBoardModal } from '../../modals/delete-board-modal/delete-board-modal';
 
 @Component({
   selector: 'app-header',
-  imports: [ClickOutsideDirective],
+  imports: [ClickOutsideDirective, BaseButton],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })

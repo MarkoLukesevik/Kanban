@@ -32,26 +32,18 @@
         </div>
       }
 
-      <button
-        class="button button"
-        [class.button-secondary]="!isDark()"
-        [class.button-secondary-dark-mode]="isDark()"
-        (click)="handleAddNewColumn()"
-      >
-        + Add New Column
-      </button>
+      <app-base-button
+        [type]="'secondary'"
+        [text]="'+ Add New Column'"
+        (handleButtonClick)="handleAddNewColumn()"
+      />
     </div>
 
-    <button
-      class="button button-primary create-edit-board-modal__save-button"
-      [disabled]="isSaveButtonSpinnerOn"
-      (click)="handleSaveClick()"
-    >
-      @if (isSaveButtonSpinnerOn) {
-        <i class="fa-solid fa-spinner fa-spin"></i>
-      } @else {
-        {{ getSaveButtonName() }}
-      }
-    </button>
+    <app-base-button
+      [text]="getSaveButtonName()"
+      [isDisabled]="isSaveButtonSpinnerOn"
+      [isSpinnerOn]="isSaveButtonSpinnerOn"
+      (handleButtonClick)="handleSaveClick()"
+    />
   </div>
 </app-base-modal>

@@ -14,6 +14,8 @@ import { BoardService } from '../../services/board-service/board-service';
 import { TaskService } from '../../services/task-service/task-service';
 import { ToastrService } from 'ngx-toastr';
 
+import { BaseButton } from '../../base-components/base-button/base-button';
+
 import { TaskComponent } from './task/task.component';
 import { AddNewColumnModal } from '../../modals/add-new-column-modal/add-new-column-modal';
 
@@ -23,7 +25,7 @@ import Task from '../../models/task';
 
 @Component({
   selector: 'app-board-presenter',
-  imports: [TaskComponent, CdkDropList, DragDropModule],
+  imports: [TaskComponent, CdkDropList, DragDropModule, BaseButton],
   templateUrl: './board-presenter.html',
   styleUrl: './board-presenter.scss',
 })

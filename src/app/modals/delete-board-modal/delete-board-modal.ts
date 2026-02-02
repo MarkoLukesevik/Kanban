@@ -7,12 +7,13 @@ import { ModalService } from '../../services/modal-service/modal-service';
 import { ToastrService } from 'ngx-toastr';
 
 import { BaseModal } from '../../base-components/base-modal/base-modal';
+import { BaseButton } from '../../base-components/base-button/base-button';
 
 import Board from '../../models/board';
 
 @Component({
   selector: 'app-delete-board-modal',
-  imports: [BaseModal],
+  imports: [BaseModal, BaseButton],
   templateUrl: './delete-board-modal.html',
   styleUrl: './delete-board-modal.scss',
 })

@@ -8,12 +8,13 @@ import { ModalService } from '../../services/modal-service/modal-service';
 import { ToastrService } from 'ngx-toastr';
 
 import { BaseModal } from '../../base-components/base-modal/base-modal';
+import { BaseButton } from '../../base-components/base-button/base-button';
 
 import Task from '../../models/task';
 
 @Component({
   selector: 'app-delete-task-modal',
-  imports: [BaseModal],
+  imports: [BaseModal, BaseButton],
   templateUrl: './delete-task-modal.html',
   styleUrl: './delete-task-modal.scss',
 })

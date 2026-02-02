@@ -48,13 +48,12 @@
     </div>
 
     <div class="login-register-modal__footer">
-      <button
-        class="button button-primary login-register-modal__footer-submit-button"
-        [disabled]="isFooterButtonDisabled()"
-        (click)="handleFooterButtonClick()"
-      >
-        {{ getTextBasedOnActiveView() }}
-      </button>
+      <app-base-button
+        [text]="getTextBasedOnActiveView()"
+        (handleButtonClick)="handleFooterButtonClick()"
+        [isSpinnerOn]="isSubmitButtonSpinnerOn()"
+        [isDisabled]="isFooterButtonDisabled()"
+      />
 
       <button class="login-register-modal__footer-toggle-button" (click)="toggleActiveView()">
         {{ getActiveViewToggleButtonText() }}

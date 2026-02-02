@@ -11,6 +11,7 @@ import { BaseInput } from '../../base-components/base-input/base-input';
 import { BaseSelect } from '../../base-components/base-select/base-select';
 import { BaseTextarea } from '../../base-components/base-textarea/base-textarea';
 import { BaseModal } from '../../base-components/base-modal/base-modal';
+import { BaseButton } from '../../base-components/base-button/base-button';
 
 import Task from '../../models/task';
 import Subtask from '../../models/subtask';
@@ -22,7 +23,7 @@ import CreateTaskRequest from '../../requests/task-requests/create-task-request'
 
 @Component({
   selector: 'app-create-edit-task-modal',
-  imports: [BaseModal, BaseInput, BaseSelect, BaseTextarea],
+  imports: [BaseModal, BaseInput, BaseSelect, BaseTextarea, BaseButton],
   templateUrl: './create-edit-task-modal.html',
   styleUrl: './create-edit-task-modal.scss',
 })

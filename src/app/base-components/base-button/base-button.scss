@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.base-button {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 20px;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  &__primary {
+    background-color: var(--base-purple-color);
+    color: var(--base-white-color);
+
+    &:hover {
+      background-color: var(--base-purple-color-hover);
+    }
+  }
+
+  &__secondary {
+    background-color: #635fc71a;
+    color: var(--base-purple-color);
+
+    &:hover {
+      background-color: #635fc73f;
+    }
+  }
+
+  &__danger {
+    background-color: var(--base-red-color);
+    color: var(--base-white-color);
+
+    &:hover {
+      background-color: var(--base-red-color-hover);
+    }
+  }
+
+  &__dark.base-button__secondary {
+    background-color: var(--base-white-color);
+    color: var(--base-purple-color);
+  }
+
+  &:disabled {
+    background-color: var(--base-light-grey-color);
+    color: #828fa351;
+    cursor: not-allowed;
+  }
+}

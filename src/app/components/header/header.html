@@ -21,13 +21,7 @@
     </div>
 
     <div class="header-content__actions">
-      <button
-        class="button button-primary header-content__actions-button"
-        (click)="handleAddNewTask()"
-      >
-        <i class="fa-solid fa-plus header-content__actions-button__icon"></i>
-        <span class="header-content__actions-button__text">+ Add new task</span>
-      </button>
+      <app-base-button [text]="'+ Add new task'" (handleButtonClick)="handleAddNewTask()" />
 
       <div
         class="header-content__actions-more"

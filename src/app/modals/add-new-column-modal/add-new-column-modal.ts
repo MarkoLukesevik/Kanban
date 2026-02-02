@@ -9,14 +9,15 @@ import { ColumnService } from '../../services/column-service/column-service';
 
 import { BaseModal } from '../../base-components/base-modal/base-modal';
 import { BaseInput } from '../../base-components/base-input/base-input';
+import { BaseButton } from '../../base-components/base-button/base-button';
 
-import CreateColumnRequest from '../../requests/column-requests/create-column-request';
 import Column from '../../models/column';
 import Board from '../../models/board';
+import CreateColumnRequest from '../../requests/column-requests/create-column-request';
 
 @Component({
   selector: 'app-add-new-column-modal',
-  imports: [BaseModal, BaseInput],
+  imports: [BaseModal, BaseInput, BaseButton],
   templateUrl: './add-new-column-modal.html',
   styleUrl: './add-new-column-modal.scss',
 })

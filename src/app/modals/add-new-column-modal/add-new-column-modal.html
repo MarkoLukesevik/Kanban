@@ -12,12 +12,11 @@
       (handleInputChange)="handleColumnNameChange($event)"
     />
 
-    <button (click)="handleAddColumnClick()" [disabled]="isAddColumnButtonSpinnerOn">
-      @if (isAddColumnButtonSpinnerOn) {
-        <i class="fa-solid fa-spinner fa-spin"></i>
-      } @else {
-        Add New Column
-      }
-    </button>
+    <app-base-button
+      [text]="'Add New Column'"
+      (handleButtonClick)="handleAddColumnClick()"
+      [isDisabled]="isAddColumnButtonSpinnerOn"
+      [isSpinnerOn]="isAddColumnButtonSpinnerOn"
+    />
   </div>
 </app-base-modal>

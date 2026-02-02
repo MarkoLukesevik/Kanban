@@ -36,12 +36,6 @@
     flex-direction: column;
     row-gap: 0.5rem;
 
-    &-submit-button:disabled {
-      background-color: var(--base-light-grey-color);
-      color: #828fa351;
-      cursor: not-allowed;
-    }
-
     &-toggle-button {
       background-color: transparent;
       color: var(--base-purple-color);

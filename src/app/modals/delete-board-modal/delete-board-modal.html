@@ -6,20 +6,19 @@
       This action cannot be reversed.
     </p>
     <div class="delete-board-modal__footer">
-      <button
-        class="delete-board-modal__footer-button delete-board-modal__footer-button__delete"
-        (click)="handleDeleteClick()"
-      >
-        Delete
-      </button>
+      <app-base-button
+        [type]="'danger'"
+        [text]="'Delete'"
+        [isDisabled]="isDeleteButtonSpinnerOn"
+        [isSpinnerOn]="isDeleteButtonSpinnerOn"
+        (handleButtonClick)="handleDeleteClick()"
+      />
 
-      <button
-        class="delete-board-modal__footer-button delete-board-modal__footer-button__cancel"
-        [class.delete-board-modal__footer-button__cancel-dark]="isDark()"
-        (click)="handleCancelClick()"
-      >
-        Cancel
-      </button>
+      <app-base-button
+        [type]="'secondary'"
+        [text]="'Cancel'"
+        (handleButtonClick)="handleCancelClick()"
+      />
     </div>
   </div>
 </app-base-modal>

@@ -9,17 +9,19 @@ import { KanbanService } from '../../services/kanban-service/kanban-service';
 
 import { BaseModal } from '../../base-components/base-modal/base-modal';
 import { BaseInput } from '../../base-components/base-input/base-input';
+import { BaseButton } from '../../base-components/base-button/base-button';
 
 import Board from '../../models/board';
 import Kanban from '../../models/kanban';
 import Column from '../../models/column';
+
 import EditBoardRequest from '../../requests/board-requests/edit-board-request';
 import EditColumnRequest from '../../requests/column-requests/edit-column-request';
 import CreateBoardRequest from '../../requests/board-requests/create-board-request';
 
 @Component({
   selector: 'app-create-edit-board-modal',
-  imports: [BaseModal, BaseInput],
+  imports: [BaseModal, BaseInput, BaseButton],
   templateUrl: './create-edit-board-modal.html',
   styleUrl: './create-edit-board-modal.scss',
 })

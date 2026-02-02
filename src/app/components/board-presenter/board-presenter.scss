@@ -10,6 +10,19 @@
 
   padding: 1.5rem 1rem;
 
+  &__empty {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+
+    height: max-content;
+    color: var(--base-medium-grey-color);
+    font-size: 0.875rem;
+  }
+
   &__column {
     display: flex;
     flex-direction: column;

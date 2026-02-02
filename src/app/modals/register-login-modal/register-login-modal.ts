@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +8,7 @@ import { ModalService } from '../../services/modal-service/modal-service';
 
 import { BaseModal } from '../../base-components/base-modal/base-modal';
 import { BaseInput } from '../../base-components/base-input/base-input';
+import { BaseButton } from '../../base-components/base-button/base-button';
 
 import User from '../../models/user';
 
@@ -15,7 +16,7 @@ import RegisterUserRequest from '../../requests/user-requests/register-user-requ
 
 @Component({
   selector: 'app-register-login-modal',
-  imports: [BaseModal, BaseInput],
+  imports: [BaseModal, BaseInput, BaseButton],
   templateUrl: './register-login-modal.html',
   styleUrl: './register-login-modal.scss',
 })
@@ -35,6 +36,8 @@ export class RegisterLoginModal {
 
   public emailError: string = '';
   public passwordError: string = '';
+
+  public isSubmitButtonSpinnerOn: WritableSignal<boolean> = signal(false);
 
   public isDark: Signal<boolean> = computed(
     (): boolean => this.themeService.currentTheme() === 'dark',
@@ -92,25 +95,31 @@ export class RegisterLoginModal {
       password: this.password,
     };
 
+    this.isSubmitButtonSpinnerOn.set(true);
     this.userService.register(request).subscribe({
       next: (): void => {
         this.toggleActiveView();
+        this.isSubmitButtonSpinnerOn.set(false);
         this.toastService.success('Account successfully registered!');
       },
-      error: (httpErrorResponse: HttpErrorResponse) =>
-        this.toastService.error(httpErrorResponse.error.error),
+      error: (httpErrorResponse: HttpErrorResponse): void => {
+        this.toastService.error(httpErrorResponse.error.error);
+        this.isSubmitButtonSpinnerOn.set(false);
+      },
     });
   }
 
   private handleLogin(): void {
+    this.isSubmitButtonSpinnerOn.set(true);
     this.userService.login({ username: this.username, password: this.password }).subscribe({
       next: (user: User): void => {
         this.userService.setLoggedInUser(user);
+        this.isSubmitButtonSpinnerOn.set(false);
         this.modalService.close(user);
       },
-      error: (httpErrorResponse: HttpErrorResponse) => {
-        console.log(httpErrorResponse.error.error);
+      error: (httpErrorResponse: HttpErrorResponse): void => {
         this.toastService.error(httpErrorResponse.error.error);
+        this.isSubmitButtonSpinnerOn.set(false);
       },
     });
   }

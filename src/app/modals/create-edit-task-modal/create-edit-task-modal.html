@@ -39,14 +39,11 @@
         </div>
       }
 
-      <button
-        class="button button"
-        [class.button-secondary]="!isDark()"
-        [class.button-secondary-dark-mode]="isDark()"
-        (click)="handleAddNewSubtask()"
-      >
-        + Add New Subtask
-      </button>
+      <app-base-button
+        [type]="'secondary'"
+        [text]="'+ Add New Subtask'"
+        (handleButtonClick)="handleAddNewSubtask()"
+      />
     </div>
 
     <app-base-select
@@ -56,16 +53,11 @@
       (handleChange)="task.status = $event"
     />
 
-    <button
-      class="button button-primary create-edit-task-modal__save-button"
-      [disabled]="isSaveButtonSpinnerOn"
-      (click)="handleSaveClick()"
-    >
-      @if (isSaveButtonSpinnerOn) {
-        <i class="fa-solid fa-spinner fa-spin"></i>
-      } @else {
-        {{ getSaveButtonName() }}
-      }
-    </button>
+    <app-base-button
+      [text]="getSaveButtonName()"
+      [isDisabled]="isSaveButtonSpinnerOn"
+      [isSpinnerOn]="isSaveButtonSpinnerOn"
+      (handleButtonClick)="handleSaveClick()"
+    />
   </div>
 </app-base-modal>

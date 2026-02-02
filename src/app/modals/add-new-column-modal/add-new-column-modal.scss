@@ -21,18 +21,4 @@
     font-size: 1.125rem;
     font-weight: 600;
   }
-
-  & button {
-    border: none;
-    border-radius: 1.25rem;
-    padding: 0.5rem;
-    background-color: var(--base-purple-color);
-    color: var(--base-white-color);
-
-    font-size: 0.875rem;
-    line-height: 23px;
-    font-weight: 600;
-
-    cursor: pointer;
-  }
 }
