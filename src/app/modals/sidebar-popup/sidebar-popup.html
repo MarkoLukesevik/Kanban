@@ -6,6 +6,17 @@
 
     <div class="sidebar-popup__footer">
       <app-theme />
+
+      @if (loggedInUser()) {
+        <button
+          class="sidebar-popup__footer-button"
+          [class.sidebar-popup__footer-button__dark]="isDark()"
+          (click)="handleLogoutClick()"
+        >
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      }
     </div>
   </div>
 </app-base-modal>

@@ -6,6 +6,8 @@ import { BaseModal } from '../../base-components/base-modal/base-modal';
 
 import { Theme } from '../../components/theme/theme';
 import { SidebarBoards } from '../../components/sidebar-boards/sidebar-boards';
+import { UserService } from '../../services/user-service/user-service';
+import User from '../../models/user';
 
 @Component({
   selector: 'app-sidebar-popup',
@@ -15,8 +17,17 @@ import { SidebarBoards } from '../../components/sidebar-boards/sidebar-boards';
 })
 export class SidebarPopup {
   private themeService: ThemeService = inject(ThemeService);
+  private userService: UserService = inject(UserService);
 
   public isDark: Signal<boolean> = computed(
     (): boolean => this.themeService.currentTheme() === 'dark',
   );
+
+  public loggedInUser: Signal<User | null> = computed((): User | null =>
+    this.userService.loggedInUser(),
+  );
+
+  public handleLogoutClick(): void {
+    this.userService.logout();
+  }
 }

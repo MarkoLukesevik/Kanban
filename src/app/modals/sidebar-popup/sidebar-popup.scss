@@ -8,10 +8,10 @@
   row-gap: 1rem;
 
   width: 260px;
-  height: 320px;
+  height: 360px;
   background-color: var(--base-white-color);
   box-shadow: 0 0 2px #364e7e34;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   padding: 1rem 0;
 
   &__boards {
@@ -21,7 +21,29 @@
   }
 
   &__footer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
     padding: 0 1rem;
+
+    &-button {
+      display: flex;
+      flex: 1 1 auto;
+      align-items: center;
+      justify-content: center;
+      column-gap: 0.5rem;
+
+      background-color: var(--base-light-grey-color);
+      color: var(--base-purple-color);
+      padding: 0.875rem;
+      border: none;
+      border-radius: 0.5rem;
+
+      &__dark {
+        background-color: var(--base-very-dark-grey-color);
+      }
+    }
   }
 
   &-dark {

@@ -1,4 +1,4 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from '../api-service/api-service';
@@ -13,17 +13,18 @@ import RegisterUserRequest from '../../requests/user-requests/register-user-requ
 })
 export class UserService {
   private readonly storedUser: User | null = JSON.parse(localStorage.getItem('user') ?? 'null');
-  private loggedInUser: WritableSignal<User | null> = signal<User | null>(this.storedUser ?? null);
+  public loggedInUser: WritableSignal<User | null> = signal<User | null>(this.storedUser ?? null);
 
   constructor(private apiService: ApiService) {}
-
-  public getLoggedInUser(): Signal<User | null> {
-    return this.loggedInUser;
-  }
 
   public setLoggedInUser(user: User): void {
     this.loggedInUser.set(user);
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public logout(): void {
+    localStorage.removeItem('user');
+    this.loggedInUser.set(null);
   }
 
   public login(request: LoginUserRequest): Observable<User> {

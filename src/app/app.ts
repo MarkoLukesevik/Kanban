@@ -37,7 +37,7 @@ export class App implements OnInit {
   public isBoardLoading: WritableSignal<boolean> = signal<boolean>(false);
 
   ngOnInit(): void {
-    const user: User | null = this.userService.getLoggedInUser()();
+    const user: User | null = this.userService.loggedInUser();
     if (user) this.getKanbanForUser(user.id);
     else
       this.modalService.open(AuthModal).subscribe((user: User) => this.getKanbanForUser(user.id));
