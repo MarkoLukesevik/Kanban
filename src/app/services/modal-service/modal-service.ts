@@ -1,17 +1,21 @@
-import { ApplicationRef, ComponentRef, createComponent, Injectable, Type } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ApplicationRef, ComponentRef, createComponent, Injectable, Type } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
   private modalRef: ComponentRef<any> | null = null;
-  private modalClose = new Subject<any>();
+  private currentSubject: Subject<any> | null = null;
 
   constructor(private appRef: ApplicationRef) {}
 
   public open<T>(component: Type<T>, data?: any): Observable<any> {
-    if (this.modalRef) return this.modalClose.asObservable();
+    if (this.modalRef) {
+      return new Subject<any>().asObservable();
+    }
+
+    this.currentSubject = new Subject<any>();
 
     this.modalRef = createComponent(component, {
       environmentInjector: this.appRef.injector,
@@ -22,15 +26,19 @@ export class ModalService {
     this.appRef.attachView(this.modalRef.hostView);
     document.body.appendChild(this.modalRef.location.nativeElement);
 
-    return this.modalClose.asObservable();
+    return this.currentSubject.asObservable();
   }
 
   public close(result?: any): void {
-    if (!this.modalRef) return;
+    if (!this.modalRef || !this.currentSubject) return;
 
-    this.modalClose.next(result);
+    this.currentSubject.next(result);
+    this.currentSubject.complete();
+
     this.appRef.detachView(this.modalRef.hostView);
     this.modalRef.destroy();
+
     this.modalRef = null;
+    this.currentSubject = null;
   }
 }
