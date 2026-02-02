@@ -12,7 +12,7 @@ import { Header } from './components/header/header';
 import { Sidebar } from './components/sidebar/sidebar';
 import { BoardPresenter } from './components/board-presenter/board-presenter';
 
-import { RegisterLoginModal } from './modals/register-login-modal/register-login-modal';
+import { AuthModal } from './modals/auth-modal/auth-modal';
 
 import User from './models/user';
 import Kanban from './models/kanban';
@@ -40,9 +40,7 @@ export class App implements OnInit {
     const user: User | null = this.userService.getLoggedInUser()();
     if (user) this.getKanbanForUser(user.id);
     else
-      this.modalService
-        .open(RegisterLoginModal)
-        .subscribe((user: User) => this.getKanbanForUser(user.id));
+      this.modalService.open(AuthModal).subscribe((user: User) => this.getKanbanForUser(user.id));
   }
 
   public isDark: Signal<boolean> = computed(

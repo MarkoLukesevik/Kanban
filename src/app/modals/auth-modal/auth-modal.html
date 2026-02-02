@@ -1,10 +1,10 @@
 <app-base-modal [disableClose]="true">
-  <div class="login-register-modal" [class.login-register-modal-dark]="isDark()">
-    <h2 class="login-register-modal__title">
+  <div class="auth-modal" [class.auth-modal-dark]="isDark()">
+    <h2 class="auth-modal__title">
       {{ getTextBasedOnActiveView() }}
     </h2>
 
-    <div class="login-register-modal__content">
+    <div class="auth-modal__content">
       @if (activeView === 'register') {
         <app-base-input
           [label]="'Name'"
@@ -47,7 +47,7 @@
       />
     </div>
 
-    <div class="login-register-modal__footer">
+    <div class="auth-modal__footer">
       <app-base-button
         [text]="getTextBasedOnActiveView()"
         (handleButtonClick)="handleFooterButtonClick()"
@@ -55,7 +55,7 @@
         [isDisabled]="isFooterButtonDisabled()"
       />
 
-      <button class="login-register-modal__footer-toggle-button" (click)="toggleActiveView()">
+      <button class="auth-modal__footer-toggle-button" (click)="toggleActiveView()">
         {{ getActiveViewToggleButtonText() }}
       </button>
     </div>

@@ -15,12 +15,12 @@ import User from '../../models/user';
 import RegisterUserRequest from '../../requests/user-requests/register-user-request';
 
 @Component({
-  selector: 'app-register-login-modal',
+  selector: 'app-auth-modal',
   imports: [BaseModal, BaseInput, BaseButton],
-  templateUrl: './register-login-modal.html',
-  styleUrl: './register-login-modal.scss',
+  templateUrl: './auth-modal.html',
+  styleUrl: './auth-modal.scss',
 })
-export class RegisterLoginModal {
+export class AuthModal {
   private themeService: ThemeService = inject(ThemeService);
   private userService: UserService = inject(UserService);
   private modalService: ModalService = inject(ModalService);
@@ -97,10 +97,11 @@ export class RegisterLoginModal {
 
     this.isSubmitButtonSpinnerOn.set(true);
     this.userService.register(request).subscribe({
-      next: (): void => {
-        this.toggleActiveView();
+      next: (user: User): void => {
+        this.userService.setLoggedInUser(user);
         this.isSubmitButtonSpinnerOn.set(false);
         this.toastService.success('Account successfully registered!');
+        this.modalService.close(user);
       },
       error: (httpErrorResponse: HttpErrorResponse): void => {
         this.toastService.error(httpErrorResponse.error.error);

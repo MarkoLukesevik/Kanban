@@ -1,4 +1,4 @@
-.login-register-modal {
+.auth-modal {
   display: flex;
   flex-direction: column;
   flex: 0 1 auto;
@@ -48,7 +48,7 @@
 }
 
 @media (min-width: 768px) {
-  .login-register-modal {
+  .auth-modal {
     width: 480px;
     max-width: none;
   }
