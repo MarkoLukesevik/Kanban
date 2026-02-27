@@ -70,7 +70,10 @@ export class BoardPresenter {
       const previousColumn: Column | undefined = this.columns().find(
         (col: Column) => col.tasks === event.previousContainer.data,
       );
-      if (!previousColumn) return;
+      if (!previousColumn) {
+        this.isDragAndDropSaving = false;
+        return;
+      }
 
       transferArrayItem(
         previousColumn.tasks,
