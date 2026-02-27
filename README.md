@@ -1,59 +1,92 @@
-# Kanban
+🗂️ Kanban Task Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+A full-stack Kanban board application built with Angular and .NET Web API.
+Based on a Frontend Mentor challenge and extended with a custom backend for data persistence.
 
-## Development server
+📌 About The Project
 
-To start a local development server, run:
+This project is a solution to a Frontend Mentor Kanban challenge, expanded into a full-stack application.
+While the original challenge focuses on frontend UI implementation, I extended it by:
+ - Building a .NET Web API backend
+ - Designing a relational database
+ - Implementing full CRUD functionality
+ - Persisting data instead of using static JSON
+ - The result is a complete Kanban task management system with real backend integration.
 
-```bash
-ng serve
-```
+🎯 The Challenge
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Original design provided by Frontend Mentor.
+The goal was to build a responsive Kanban board UI that matches the design as closely as possible.
 
-## Code scaffolding
+🔗 Challenge source: https://www.frontendmentor.io/challenges/kanban-task-management-web-app-wgQLt-HlbB
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+✨ Features
 
-```bash
-ng generate component component-name
-```
+ - 📋 Kanban Board (Todo / Doing / Done)
+ - ➕ Create, Edit, Delete Boards
+ - 📝 Add Tasks with Descriptions
+ - ✅ Subtasks per Task
+ - 🔄 Drag & Drop Between Columns
+ - 💾 Data Persistence via API
+ - 📱 Fully Responsive Design
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+🛠️ Tech Stack
+ Frontend
+   - Angular
+   - TypeScript
+   - Angular CDK (Drag & Drop)
+   - RxJS
+   - SCSS
 
-```bash
-ng generate --help
-```
+Backend
+ - .NET Web API
+ - Entity Framework Core
+ - SQL Server
 
-## Building
+🧩 What I Added Beyond the Challenge
+  ✔ Created a structured backend architecture
+  ✔ Designed database relationships (User - Kanban - Boards → Columns → Tasks → Subtasks)
+  ✔ Implemented full CRUD operations
+  ✔ Connected Angular frontend to real API endpoints
+  ✔ Managed application state dynamically
 
-To build the project run:
+📂 Frontend Project Structure
+  Kanban/
+  │
+  ├── src/
+  │   ├── app/
+  │   │   ├── base-components/
+  │   │   ├── components/
+  │   │   ├── directives/
+  │   │   ├── modals/
+  │   │   ├── models/
+  │   │   ├── requests/
+  │   │   ├── services/
+  │   │   ├── app.config.ts
+  │   │   ├── app.routes.ts
+  │   │   └── app.ts
+  │   │
+  │   ├── assets/
+  │   ├── index.html
+  │   ├── main.ts
+  │   └── styles.scss
+  │
+  ├── angular.json
+  ├── package.json
+  └── README.md
 
-```bash
-ng build
-```
+⚙️ Running the Frontend (Angular)
+  Clone the repository:
+  git clone https://github.com/your-username/kanban-app.git
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  cd kanban-app
+  
+  Install dependencies:
+  npm install
+  
+  Run the development server:
+  ng serve
+  
+  The application will be available at:
+  http://localhost:4200
+ 
