@@ -89,4 +89,13 @@ Backend
   
   The application will be available at:
   http://localhost:4200
+
+🔐 Demo Account
+  To quickly explore the application, you can use the following test credentials:
+  
+  Username: Marko
+  Password: Marko123
+  
+  This account is pre-seeded in the database for demonstration purposes.
+  ⚠️ Note: This is a development/demo account only.
  
