@@ -17,7 +17,7 @@ import Board from '../../models/board';
 
 @Component({
   selector: 'app-header',
-  imports: [ClickOutsideDirective, BaseButton],
+  imports: [ClickOutsideDirective, BaseButton, SidebarPopup],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
@@ -44,12 +44,8 @@ export class Header {
     (): boolean => this.themeService.currentTheme() === 'dark',
   );
 
-  public openSidebarModal(): void {
-    this.isSidebarPopupOpen = true;
-
-    this.modalService
-      .open(SidebarPopup)
-      .subscribe((): boolean => (this.isSidebarPopupOpen = false));
+  public toggleSidebarPopup(): void {
+    this.isSidebarPopupOpen = !this.isSidebarPopupOpen;
   }
 
   public toggleActionsPopup(): void {

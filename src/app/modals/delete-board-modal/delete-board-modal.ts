@@ -40,11 +40,24 @@ export class DeleteBoardModal {
           .filter((board: Board) => board.id !== this.board.id);
         this.boardService.allBoards.set(filteredBoards);
         if (this.boardService.allBoards().length > 0) {
-          this.boardService.selectedBoard.set(this.boardService.allBoards()[0]);
+          const firstBoard = this.boardService.allBoards()[0];
+          this.boardService.selectedBoard.set(firstBoard);
+          this.boardService.getBoardById(firstBoard.id).subscribe({
+            next: (board: Board): void => {
+              this.boardService.selectedBoard.set(board);
+              this.isDeleteButtonSpinnerOn = false;
+              this.modalService.close();
+            },
+            error: (httpErrorResponse: HttpErrorResponse): void => {
+              this.toastService.error(httpErrorResponse.error.error);
+              this.isDeleteButtonSpinnerOn = false;
+            },
+          });
         } else {
           this.boardService.selectedBoard.set(null);
+          this.isDeleteButtonSpinnerOn = false;
+          this.modalService.close();
         }
-        this.modalService.close();
       },
       error: (httpErrorResponse: HttpErrorResponse): void => {
         this.toastService.error(httpErrorResponse.error.error);

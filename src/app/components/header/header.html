@@ -11,8 +11,13 @@
   <div class="header-content">
     <div class="header-content__title">
       <h1>{{ selectedBoardName() }}</h1>
-      <div class="header-content__title-arrow" (click)="openSidebarModal()">
+      <div
+        class="header-content__title-arrow"
+        (appClickOutside)="isSidebarPopupOpen = false"
+        (click)="toggleSidebarPopup()"
+      >
         @if (isSidebarPopupOpen) {
+          <app-sidebar-popup />
           <i class="fa-solid fa-chevron-up"></i>
         } @else {
           <i class="fa-solid fa-chevron-down"></i>

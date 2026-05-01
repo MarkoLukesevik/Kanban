@@ -4,6 +4,7 @@ import { ThemeService } from '../../services/theme-service/theme-service';
 import { BoardService } from '../../services/board-service/board-service';
 import { KanbanService } from '../../services/kanban-service/kanban-service';
 import { UserService } from '../../services/user-service/user-service';
+import { ModalService } from '../../services/modal-service/modal-service';
 
 import { BaseModal } from '../../base-components/base-modal/base-modal';
 
@@ -23,6 +24,7 @@ export class SidebarPopup {
   private userService: UserService = inject(UserService);
   private boardService: BoardService = inject(BoardService);
   private kanbanService: KanbanService = inject(KanbanService);
+  private modalService: ModalService = inject(ModalService);
 
   public isDark: Signal<boolean> = computed(
     (): boolean => this.themeService.currentTheme() === 'dark',
@@ -37,5 +39,6 @@ export class SidebarPopup {
     this.kanbanService.kanbanBoard.set(null);
     this.boardService.allBoards.set([]);
     this.boardService.selectedBoard.set(null);
+    this.modalService.close(null);
   }
 }
