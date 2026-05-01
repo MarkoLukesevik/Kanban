@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ThemeService } from './services/theme-service/theme-service';
