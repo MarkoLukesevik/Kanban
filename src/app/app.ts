@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ThemeService } from './services/theme-service/theme-service';
@@ -24,7 +24,7 @@ import Board from './models/board';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
+export class App {
   public isSidebarVisible: boolean = true;
 
   private themeService: ThemeService = inject(ThemeService);
@@ -36,12 +36,15 @@ export class App implements OnInit {
 
   public isBoardLoading: WritableSignal<boolean> = signal<boolean>(false);
 
-  ngOnInit(): void {
-    const user: User | null = this.userService.loggedInUser();
-    if (user) this.getKanbanForUser(user.id);
-    else
-      this.modalService.open(AuthModal).subscribe((user: User) => this.getKanbanForUser(user.id));
+  constructor() {
+    effect(() => {
+      const user: User | null = this.userService.loggedInUser();
+      if (user) this.getKanbanForUser(user.id);
+      else
+        this.modalService.open(AuthModal).subscribe((user: User) => this.getKanbanForUser(user.id));
+    });
   }
+
 
   public isDark: Signal<boolean> = computed(
     (): boolean => this.themeService.currentTheme() === 'dark',
